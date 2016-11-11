@@ -29,7 +29,7 @@ public class Manager extends Agent{
 	String name;
 	public Manager()
 	{
-		this.name = "Manager1";
+		this.name = "Manager2";
 	}
 	public void setup()
 	{
