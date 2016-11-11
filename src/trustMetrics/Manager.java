@@ -27,9 +27,9 @@ public class Manager extends Agent{
 	private Network<Object> net;
 	private RepastEdge<Object> edge = null;
 	String name;
-	public Manager()
+	public Manager(String name)
 	{
-		this.name = "Manager2";
+		this.name = name;
 	}
 	public void setup()
 	{
@@ -56,7 +56,16 @@ public class Manager extends Agent{
 		public void action() {
 			System.out.println("Connecting");
 			context = ContextUtils.getContext(myAgent);
-			net = (Network<Object>) context.getProjection("Service Consumer/Provider network");
+			net = (Network<Object>) context.getProjection("Network");     
+			for(Object obj: context)
+			{
+				if(obj instanceof Manager && obj != myAgent)
+				{
+					Manager m = (Manager) obj;
+					System.out.println(m.name);
+					net.addEdge(myAgent,obj,2);
+				}
+			}
 			d = true;
 			
 			

@@ -1,16 +1,16 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor>
-  <name>New Display</name>
+  <name>2D Display</name>
   <type>2D</type>
   <styles>
     <entry>
-      <string>trustMetrics.Manager</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>trustMetrics.Task</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
   </styles>
   <editedStyles>
     <entry>
-      <string>trustMetrics.Manager</string>
-      <null/>
+      <string>trustMetrics.Task</string>
+      <string>trustMetrics.Task.style_0.xml</string>
     </entry>
   </editedStyles>
   <netStyles>
@@ -33,14 +33,14 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>2110290317</hashCode>
+    <hashCode>763502334</hashCode>
   </schedParams>
   <layoutClassName>repast.simphony.visualization.visualization2D.Random2DLayout</layoutClassName>
   <layoutProjection>Network</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>trustMetrics.Manager</string>
+      <string>trustMetrics.Task</string>
       <int>0</int>
     </entry>
   </layerOrder>
