@@ -12,11 +12,13 @@ import sajas.core.Runtime;
 import sajas.sim.repasts.RepastSLauncher;
 import sajas.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import java.util.*;
 public class RepastStart extends RepastSLauncher {
 	
 	public static final boolean SEPARATE_CONTAINERS = false;
 	private ContainerController mainContainer;
 	private ContainerController agentContainer;
+	Set<Task> TASKS;
 	@Override
 	public String getName() {
 		return "Trust Metric Project";
@@ -35,23 +37,20 @@ public class RepastStart extends RepastSLauncher {
 			agentContainer = mainContainer;
 		}
 		// Project def.
-		Task t1 = new Task("Task 1");
-		Task t2 = new Task("Task 2");
-		Task t3 = new Task("Task 3");
-		Task t4 = new Task("Task 4");
-		Task t5 = new Task("Task 5");
-		t1.addEdge(t2);
-		t2.addEdge(t3);
-		t2.addEdge(t4);
-		t4.addEdge(t5);
-		t3.addEdge(t5);
+		Task end = new Task("End",0);
+		Task C = new Task("C",4,end);
+		Task B = new Task("B",3,end);
+		Task A = new Task("A",2,B,C);
+		Task start = new Task("Start",0,A);
+		Manager m = new Manager("Manager",start,A,B,C,end);
 		// Project def
 		try {
-			agentContainer.acceptNewAgent("Task 1", t1).start();
-			agentContainer.acceptNewAgent("Task 2", t2).start();
-			agentContainer.acceptNewAgent("Task 3", t3).start();
-			agentContainer.acceptNewAgent("Task 4", t4).start();
-			agentContainer.acceptNewAgent("Task 5", t5).start();
+			agentContainer.acceptNewAgent("Task 1", end).start();
+			agentContainer.acceptNewAgent("Task 2", C).start();
+			agentContainer.acceptNewAgent("Task 3", B).start();
+			agentContainer.acceptNewAgent("Task 4", A).start();
+			agentContainer.acceptNewAgent("Task 5", start).start();
+			agentContainer.acceptNewAgent("Manager", m).start();
 			
 		} catch (StaleProxyException e) {
 			// TODO Auto-generated catch block
