@@ -3,6 +3,10 @@
   <type>2D</type>
   <styles>
     <entry>
+      <string>trustMetrics.Worker</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
       <string>trustMetrics.Manager</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -12,6 +16,10 @@
     </entry>
   </styles>
   <editedStyles>
+    <entry>
+      <string>trustMetrics.Worker</string>
+      <string>trustMetrics.Worker.style_1.xml</string>
+    </entry>
     <entry>
       <string>trustMetrics.Manager</string>
       <string>trustMetrics.Manager.style_1.xml</string>
@@ -41,19 +49,23 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-700062778</hashCode>
+    <hashCode>-56263607</hashCode>
   </schedParams>
   <layoutClassName>repast.simphony.visualization.visualization2D.Random2DLayout</layoutClassName>
   <layoutProjection>Network</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
-      <string>trustMetrics.Manager</string>
+      <string>trustMetrics.Worker</string>
       <int>0</int>
     </entry>
     <entry>
-      <string>trustMetrics.Task</string>
+      <string>trustMetrics.Manager</string>
       <int>1</int>
+    </entry>
+    <entry>
+      <string>trustMetrics.Task</string>
+      <int>2</int>
     </entry>
   </layerOrder>
   <projections>

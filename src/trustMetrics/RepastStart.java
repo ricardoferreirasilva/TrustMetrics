@@ -43,6 +43,9 @@ public class RepastStart extends RepastSLauncher {
 		Task A = new Task("A",2,B,C);
 		Task start = new Task("Start",0,A);
 		Manager m = new Manager("Manager",start,A,B,C,end);
+		
+		Worker w1 = new Worker("Worker 1","A1","B1");
+		Worker w2 = new Worker("Worker 2","A1","D1");
 		// Project def
 		try {
 			agentContainer.acceptNewAgent("Task 1", end).start();
@@ -51,12 +54,13 @@ public class RepastStart extends RepastSLauncher {
 			agentContainer.acceptNewAgent("Task 4", A).start();
 			agentContainer.acceptNewAgent("Task 5", start).start();
 			agentContainer.acceptNewAgent("Manager", m).start();
+			agentContainer.acceptNewAgent("Worker 1", w1).start();
+			agentContainer.acceptNewAgent("Worker 2", w2).start();
 			
 		} catch (StaleProxyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Launched.");
 	}
 	public Context build(Context<Object> context) {
 		// http://repast.sourceforge.net/docs/RepastJavaGettingStarted.pdf

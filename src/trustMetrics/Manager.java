@@ -1,11 +1,6 @@
 package trustMetrics;
 import java.awt.Color;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
+import java.util.*;
 import jade.content.lang.Codec;
 import jade.content.lang.Codec.CodecException;
 import jade.content.lang.sl.SLCodec;
@@ -33,12 +28,18 @@ import sajas.proto.SubscriptionInitiator;
 public class Manager extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
+	
 	HashSet<Task> projectTasks;
+	static ArrayList<Task> criticalPath;
+	ArrayList<Task> availableTasks;
+	
 	String name;
 	public Manager(String name,Task... tasks)
 	{
 		this.name = name;
 		projectTasks = new HashSet<Task>();
+		criticalPath = new ArrayList<Task>();
+		availableTasks = new ArrayList<Task>();
 		for(Task t: tasks)
 		{
 			projectTasks.add(t);
@@ -58,17 +59,54 @@ public class Manager extends Agent{
 	      } catch(FIPAException e) {
 	         e.printStackTrace();
 	      }
-		firstBehaviour f = new firstBehaviour();
-		addBehaviour(f);
-		System.out.println("Manager");
+		 criticalPathBehaviour criticalPathBehaviour = new criticalPathBehaviour();
+		 availableTasksBehaviour availableTasksBehaviour = new availableTasksBehaviour();
+		 addBehaviour(criticalPathBehaviour);
+		 addBehaviour(availableTasksBehaviour);
 		
 	}
-	private class firstBehaviour extends SimpleBehaviour
+	private class criticalPathBehaviour extends SimpleBehaviour
 	{
 		boolean d = false;
 		@Override
 		public void action() {
-			System.out.println("Critical Path: "+Arrays.toString(criticalPath(projectTasks)));
+			
+			criticalPath.clear();
+		    for(Task t: criticalPath(projectTasks))
+		    {
+		    	criticalPath.add(t);
+		    }
+			System.out.println("Manager - Critical Path: "+Arrays.toString(criticalPath(projectTasks)) + "\n");
+			d = true;
+			
+			
+		}
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return d;
+		}
+		
+	}
+	private class availableTasksBehaviour extends SimpleBehaviour
+	{
+		boolean d = false;
+		@Override
+		public void action() {
+			//For each task in the project.
+			for(Task t: projectTasks)
+			{
+				//We check if any of its dependencies is not finished.
+				boolean dependenciesLeft = false;
+				for(Task T: projectTasks)
+				{
+					//If we find a dependency that is not finished, then that task is not available to be worked on.
+					if(T.dependencies.contains(t) && T.finished == false) dependenciesLeft = true;
+				}
+				//If no dependencies left unfinished, we can work on it.
+				if(!dependenciesLeft) availableTasks.add(t);
+			}
+			System.out.print("Manager - Available: "+availableTasks.toString());
 			d = true;
 			
 			
@@ -135,7 +173,6 @@ public class Manager extends Agent{
 	        return 0;
 	      }
 	    });
-
 	    return ret;
 	  }
 }

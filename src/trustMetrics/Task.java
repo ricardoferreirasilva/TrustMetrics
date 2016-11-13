@@ -36,7 +36,7 @@ public class Task extends Agent{
 	private Network<Object> net;
 
 	
-	
+	public boolean finished;
 	public int cost;
     //the cost of the task along the critical path
     public int criticalCost;
@@ -51,6 +51,8 @@ public class Task extends Agent{
       for(Task t : dependencies){
         this.dependencies.add(t);
       }
+      if(name == "Start") finished = true;
+      else finished = false;
     }
     // Agent setup function.
 	public void setup()
