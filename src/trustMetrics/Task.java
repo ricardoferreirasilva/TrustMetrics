@@ -37,6 +37,7 @@ public class Task extends Agent{
 
 	
 	public boolean finished;
+	public boolean available;
 	public int cost;
     //the cost of the task along the critical path
     public int criticalCost;
@@ -53,6 +54,7 @@ public class Task extends Agent{
       }
       if(name == "Start") finished = true;
       else finished = false;
+      available = false;
     }
     // Agent setup function.
 	public void setup()
@@ -75,6 +77,9 @@ public class Task extends Agent{
     public String toString() {
       return name+": "+criticalCost;
     }
+	 public void setAvailable() {
+	      available = true;
+	    }
     public boolean isDependent(Task t){
       //is t a direct dependency?
       if(dependencies.contains(t)){

@@ -104,7 +104,11 @@ public class Manager extends Agent{
 					if(T.dependencies.contains(t) && T.finished == false) dependenciesLeft = true;
 				}
 				//If no dependencies left unfinished, we can work on it.
-				if(!dependenciesLeft) availableTasks.add(t);
+				if(!dependenciesLeft && t.name!="Start") 
+				{
+					t.setAvailable();
+					availableTasks.add(t);
+				}
 			}
 			System.out.print("Manager - Available: "+availableTasks.toString());
 			d = true;

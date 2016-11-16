@@ -23,7 +23,9 @@ public class TaskStyle extends DefaultStyleOGL2D {
 	public Color getColor(Object o) {
 		if (o instanceof Task) {
 			Task a = (Task) o;
-			return Color.RED;
+			if(a.finished) return Color.GREEN;
+			if(a.available) return Color.YELLOW;
+			else return Color.RED;
 		} else {
 			return Color.BLACK;
 		}
@@ -39,7 +41,15 @@ public class TaskStyle extends DefaultStyleOGL2D {
 	}
 	@Override
 	public String getLabel(Object agent) {
-		style.setLabel("teste");
+		if(agent instanceof Task)
+		{
+			Task a = (Task) agent;
+			style.setLabel(a.toString());
+		}
+		else
+		{
+			style.setLabel("unknown");
+		}
 		return EditedStyleUtils.getLabel(style, agent);
 	}
 	
