@@ -14,43 +14,56 @@ import repast.simphony.visualization.editedStyle.EditedStyleData;
 import repast.simphony.visualization.editedStyle.EditedStyleUtils;
 import repast.simphony.visualizationOGL2D.DefaultStyleOGL2D;
 import saf.v3d.scene.Position;
+import saf.v3d.scene.VSpatial;
 
 public class TaskStyle extends DefaultStyleOGL2D {
 	private RepastEssentials re = new RepastEssentials();
 	EditedStyleData<Object> style = new DefaultEditedStyleData2D<Object>();
 	Font font;
+
 	@Override
 	public Color getColor(Object o) {
 		if (o instanceof Task) {
 			Task a = (Task) o;
-			if(a.finished) return Color.GREEN;
-			if(a.available) return Color.YELLOW;
-			else return Color.RED;
+			if (a.finished)
+				return Color.GREEN;
+			if (a.available)
+				return Color.YELLOW;
+			else
+				return Color.RED;
 		} else {
 			return Color.BLACK;
 		}
 	}
 
-	
 	@Override
-	public Font getLabelFont(Object agent){
-		font = new Font(style.getLabelFontFamily(), 
-		        style.getLabelFontType(),
-		        style.getLabelFontSize());
+	public Font getLabelFont(Object agent) {
+		font = new Font(style.getLabelFontFamily(), style.getLabelFontType(), style.getLabelFontSize());
 		return font;
 	}
+
 	@Override
 	public String getLabel(Object agent) {
-		if(agent instanceof Task)
-		{
+		if (agent instanceof Task) {
 			Task a = (Task) agent;
 			style.setLabel(a.toString());
-		}
-		else
-		{
+		} else {
 			style.setLabel("unknown");
 		}
 		return EditedStyleUtils.getLabel(style, agent);
 	}
-	
+
+	@Override
+	public float getScale(Object agent) {
+		return 5;
+	}
+
+	@Override
+	public VSpatial getVSpatial(Object agent, VSpatial spatial) {
+		if (spatial == null) {
+			spatial = shapeFactory.createRectangle(4, 4, true);
+		}
+		return spatial;
+	}
+
 }
