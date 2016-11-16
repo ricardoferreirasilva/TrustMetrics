@@ -12,7 +12,7 @@
     </entry>
     <entry>
       <string>trustMetrics.Task</string>
-      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+      <string>trustMetrics.TaskStyle</string>
     </entry>
   </styles>
   <editedStyles>
@@ -26,7 +26,7 @@
     </entry>
     <entry>
       <string>trustMetrics.Task</string>
-      <string>trustMetrics.Task.style_3.xml</string>
+      <null/>
     </entry>
   </editedStyles>
   <netStyles>
@@ -49,7 +49,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-56263607</hashCode>
+    <hashCode>418551303</hashCode>
   </schedParams>
   <layoutClassName>repast.simphony.visualization.visualization2D.Random2DLayout</layoutClassName>
   <layoutProjection>Network</layoutProjection>
