@@ -29,9 +29,9 @@ public class Manager extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
 	
-	HashSet<Task> projectTasks;
-	static ArrayList<Task> criticalPath;
-	ArrayList<Task> availableTasks;
+	private HashSet<Task> projectTasks;
+	private static ArrayList<Task> criticalPath;
+	private ArrayList<Task> availableTasks;
 	
 	String name;
 	public Manager(String name,Task... tasks)
@@ -101,10 +101,10 @@ public class Manager extends Agent{
 				for(Task T: projectTasks)
 				{
 					//If we find a dependency that is not finished, then that task is not available to be worked on.
-					if(T.dependencies.contains(t) && T.finished == false) dependenciesLeft = true;
+					if(T.getDependencies().contains(t) && T.getFinished() == false) dependenciesLeft = true;
 				}
 				//If no dependencies left unfinished, we can work on it.
-				if(!dependenciesLeft && t.name!="Start") 
+				if(!dependenciesLeft && !t.getNamePrivate().equals("Start")) 
 				{
 					t.setAvailable();
 					availableTasks.add(t);
@@ -136,16 +136,16 @@ public class Manager extends Agent{
 	      //find a new task to calculate
 	      for(Iterator<Task> it = remaining.iterator();it.hasNext();){
 	        Task task = it.next();
-	        if(completed.containsAll(task.dependencies)){
+	        if(completed.containsAll(task.getDependencies())){
 	          //all dependencies calculated, critical cost is max dependency
 	          //critical cost, plus our cost
 	          int critical = 0;
-	          for(Task t : task.dependencies){
-	            if(t.criticalCost > critical){
-	              critical = t.criticalCost;
+	          for(Task t : task.getDependencies()){
+	            if(t.getCriticalCost() > critical){
+	              critical = t.getCriticalCost();
 	            }
 	          }
-	          task.criticalCost = critical+task.cost;
+	          task.setCriticalCost(critical+task.getCost());
 	          //set task as calculated an remove
 	          completed.add(task);
 	          it.remove();
@@ -166,7 +166,7 @@ public class Manager extends Agent{
 	      @Override
 	      public int compare(Task o1, Task o2) {
 	        //sort by cost
-	        int i= o2.criticalCost-o1.criticalCost;
+	        int i= o2.getCriticalCost()-o1.getCriticalCost();
 	        if(i != 0)return i;
 
 	        //using dependency as a tie breaker

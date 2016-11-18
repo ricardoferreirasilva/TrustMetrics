@@ -25,9 +25,9 @@ public class TaskStyle extends DefaultStyleOGL2D {
 	public Color getColor(Object o) {
 		if (o instanceof Task) {
 			Task a = (Task) o;
-			if (a.finished)
+			if (a.getFinished())
 				return Color.GREEN;
-			if (a.available)
+			if (a.getAvailable())
 				return Color.YELLOW;
 			else
 				return Color.RED;

@@ -36,15 +36,15 @@ public class Task extends Agent{
 	private Network<Object> net;
 
 	
-	public boolean finished;
-	public boolean available;
-	public int cost;
+	private boolean finished;
+	private boolean available;
+	private int cost;
     //the cost of the task along the critical path
-    public int criticalCost;
+    private int criticalCost;
     //a name for the task for printing
-    public String name;
+    private String name;
     //the tasks on which this task is dependant
-    public HashSet<Task> dependencies = new HashSet<Task>();
+    private HashSet<Task> dependencies = new HashSet<Task>();
     //Constructor
     public Task(String name, int cost, Task... dependencies) {
       this.name = name;
@@ -52,7 +52,7 @@ public class Task extends Agent{
       for(Task t : dependencies){
         this.dependencies.add(t);
       }
-      if(name == "Start") finished = true;
+      if(name.equals("Start")) finished = true;
       else finished = false;
       available = false;
     }
@@ -115,5 +115,38 @@ public class Task extends Agent{
 			return drawedYet;
 		}
 		
+	}
+	
+	
+	//Some GETTERS for better encapsulation
+	public HashSet<Task> getDependencies(){
+		return this.dependencies;
+	}
+	
+	public boolean getFinished(){
+		return this.finished;
+	}
+	
+	public boolean getAvailable(){
+		return this.available;
+	}
+	
+	public int getCost(){
+		return this.cost;
+	}
+	
+	// Exception to format, because using "getName()" would need to override Agent class
+	public String getNamePrivate(){
+		return this.name;
+	}
+	
+	public int getCriticalCost(){
+		return this.criticalCost;
+	}
+	
+	//SETTERS
+	
+	public void setCriticalCost(int cc){
+		this.criticalCost = cc;
 	}
 }
