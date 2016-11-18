@@ -31,7 +31,7 @@ public class Worker extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
 	public HashMap<String,Float> skillSet;
-	String name;
+	private String name;
 	//Constructor
 	public Worker(String name,String... skills)
 	{
@@ -63,5 +63,12 @@ public class Worker extends Agent{
 	      }
 		
 		
+	}
+
+
+	// GETTERS
+	// Exception to format, because using "getName()" would need to override Agent class
+	public String getNamePrivate(){
+		return this.name;
 	}
 }

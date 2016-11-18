@@ -43,12 +43,15 @@ public class Task extends Agent{
     private int criticalCost;
     //a name for the task for printing
     private String name;
-    //the tasks on which this task is dependant
+    //the tasks on which this task is dependent
     private HashSet<Task> dependencies = new HashSet<Task>();
+    //the skills on which this task is dependent
+    private String[] skills;
     //Constructor
-    public Task(String name, int cost, Task... dependencies) {
+    public Task(String name, int cost, String[] skills, Task... dependencies) {
       this.name = name;
       this.cost = cost;
+      this.skills = skills;
       for(Task t : dependencies){
         this.dependencies.add(t);
       }
@@ -63,7 +66,7 @@ public class Task extends Agent{
 		template.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
 		sd.setName(getName());
-		sd.setType("Manager");
+		sd.setType("Manager");   //  @Ricardo check this . 
 		template.addServices(sd);
 		 try {
 	         DFService.register(this, template);
@@ -77,7 +80,7 @@ public class Task extends Agent{
     public String toString() {
       return name+": "+criticalCost;
     }
-	 public void setAvailable() {
+	public void setAvailable() {
 	      available = true;
 	    }
     public boolean isDependent(Task t){
@@ -142,6 +145,10 @@ public class Task extends Agent{
 	
 	public int getCriticalCost(){
 		return this.criticalCost;
+	}
+	
+	public String[] getSkills(){
+		return this.skills;
 	}
 	
 	//SETTERS

@@ -37,15 +37,16 @@ public class RepastStart extends RepastSLauncher {
 			agentContainer = mainContainer;
 		}
 		// Project def.
-		Task end = new Task("End",0);
-		Task C = new Task("C",4,end);
-		Task B = new Task("B",3,end);
-		Task A = new Task("A",2,B,C);
-		Task start = new Task("Start",0,A);
+		String[] dummy_skills = {"FurnitureTesting", "HurtingChildren"};
+		Task end = new Task("End",0, dummy_skills);
+		Task C = new Task("C",4,dummy_skills,end);
+		Task B = new Task("B",3,dummy_skills,end);
+		Task A = new Task("A",2,dummy_skills,B,C);
+		Task start = new Task("Start",0,dummy_skills,A);
 		Manager m = new Manager("Manager",start,A,B,C,end);
 		
-		Worker w1 = new Worker("Worker 1","A1","B1");
-		Worker w2 = new Worker("Worker 2","A1","D1");
+		Worker w1 = new Worker("Worker 1","A1","B1", "HurtingChildren", "Furniture Testing");
+		Worker w2 = new Worker("Worker 2","A1","D1", "FurnitureTesting");
 		// Project def
 		try {
 			agentContainer.acceptNewAgent("Task 1", end).start();
