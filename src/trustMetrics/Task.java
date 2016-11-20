@@ -10,6 +10,7 @@ import jade.content.lang.sl.SLCodec;
 import jade.content.onto.Ontology;
 import jade.content.onto.OntologyException;
 import repast.simphony.context.Context;
+import repast.simphony.essentials.RepastEssentials;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.util.ContextUtils;
@@ -34,11 +35,11 @@ public class Task extends Agent{
 	
 	private Context<?> context;
 	private Network<Object> net;
-
+	private RepastEssentials re = new RepastEssentials();
 	
 	private boolean finished;
 	private boolean available;
-	private int cost;
+	private int cost; //this should be the estimated time for the task to take.
     //the cost of the task along the critical path
     private int criticalCost;
     //a name for the task for printing
@@ -47,6 +48,11 @@ public class Task extends Agent{
     private HashSet<Task> dependencies = new HashSet<Task>();
     //the skills on which this task is dependent
     private String[] skills;
+    
+    
+    double completion; //From 0-100%, when it reaches 100 finishes.
+    double rate; //How much the task is progressing each week.
+    
     //Constructor
     public Task(String name, int cost, String[] skills, Task... dependencies) {
       this.name = name;
@@ -66,14 +72,16 @@ public class Task extends Agent{
 		template.setName(getAID());
 		ServiceDescription sd = new ServiceDescription();
 		sd.setName(getName());
-		sd.setType("Manager");   //  @Ricardo check this . 
+		sd.setType("Task");   //  @checked
 		template.addServices(sd);
 		 try {
 	         DFService.register(this, template);
 	      } catch(FIPAException e) {
 	         e.printStackTrace();
 	      }
-		 drawEdges drawEdges = new drawEdges();
+		progressTask progressTask = new progressTask();
+		drawEdges drawEdges = new drawEdges();
+		addBehaviour(progressTask);
 		addBehaviour(drawEdges);
 	}
 	@Override
@@ -116,6 +124,34 @@ public class Task extends Agent{
 		public boolean done() {
 			// TODO Auto-generated method stub
 			return drawedYet;
+		}
+		
+	}
+	private class progressTask extends SimpleBehaviour
+	{
+		@Override
+		public void action() 
+		{
+			if(available && !finished)
+			{
+				if(re.GetTickCount() % 10 == 0) //lets say 10 ticks is  one week.
+				{
+					//System.out.println(getName() + " I am progressing.\n");
+					
+					//here we would calculate rate
+					
+					//completion += rate; -> actual operation
+					
+					completion += 25; //for debbugging and checking if progress is working
+					if(completion >= 100) finished = true;
+				}	
+			}
+			
+		}
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return finished;
 		}
 		
 	}

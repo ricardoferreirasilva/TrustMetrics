@@ -76,7 +76,7 @@ public class Manager extends Agent{
 		    {
 		    	criticalPath.add(t);
 		    }
-			System.out.println("Manager - Critical Path: "+Arrays.toString(criticalPath(projectTasks)) + "\n");
+			System.out.println("Manager - Critical Path: "+Arrays.toString(criticalPath(projectTasks)));
 			d = true;
 			
 			
@@ -94,6 +94,7 @@ public class Manager extends Agent{
 		@Override
 		public void action() {
 			//For each task in the project.
+			availableTasks.clear();
 			for(Task t: projectTasks)
 			{
 				//We check if any of its dependencies is not finished.
@@ -104,14 +105,22 @@ public class Manager extends Agent{
 					if(T.getDependencies().contains(t) && T.getFinished() == false) dependenciesLeft = true;
 				}
 				//If no dependencies left unfinished, we can work on it.
-				if(!dependenciesLeft && !t.getNamePrivate().equals("Start")) 
+				if(!dependenciesLeft && !t.getFinished()) 
 				{
-					t.setAvailable();
-					availableTasks.add(t);
+					if(t.getNamePrivate().equals("End"))
+					{
+						t.setAvailable();
+						//Project Complete
+					}
+					else
+					{
+						t.setAvailable();
+						availableTasks.add(t);
+					}
 				}
 			}
-			System.out.print("Manager - Available: "+availableTasks.toString());
-			d = true;
+			System.out.print("Manager - Available: "+availableTasks.toString()+"\n");
+			//d = true;
 			
 			
 		}
