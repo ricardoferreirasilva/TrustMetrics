@@ -47,23 +47,27 @@ public class Task extends Agent{
     //the tasks on which this task is dependent
     private HashSet<Task> dependencies = new HashSet<Task>();
     //the skills on which this task is dependent
-    private String[] skills;
+    private  ArrayList<String> skills;
     
     
+    ArrayList<Worker> assignedWorkers;
     double completion; //From 0-100%, when it reaches 100 finishes.
     double rate; //How much the task is progressing each week.
     
     //Constructor
-    public Task(String name, int cost, String[] skills, Task... dependencies) {
+    public Task(String name, int cost, Task... dependencies) {
       this.name = name;
       this.cost = cost;
-      this.skills = skills;
+      this.available = false;
+      this.assignedWorkers = new ArrayList<Worker>();
+      this.skills = new ArrayList<String>();
+      this.completion = 0;
+      this.rate = 0;
       for(Task t : dependencies){
         this.dependencies.add(t);
       }
       if(name.equals("Start")) finished = true;
       else finished = false;
-      available = false;
     }
     // Agent setup function.
 	public void setup()
@@ -91,6 +95,10 @@ public class Task extends Agent{
 	public void setAvailable() {
 	      available = true;
 	    }
+	public void addRequiredSkillset(String... skills)
+	{
+		for(String s: skills) this.skills.add(s);
+	}
     public boolean isDependent(Task t){
       //is t a direct dependency?
       if(dependencies.contains(t)){
@@ -103,6 +111,21 @@ public class Task extends Agent{
         }
       }
       return false;
+    }
+    public void addWorker(Worker w) {
+	      assignedWorkers.add(w);
+    }
+    public double getWorkerValue(Worker w) {
+    	int sum_ratings = 0; //Sum of the ratings of the workers skils that are required by the Task.
+    	//For each skill the worker has.
+    	for(String s: w.skillSet.keySet())
+    	{
+    		if(skills.contains(s))
+    		{
+    			sum_ratings += w.skillSet.get(s);
+    		}
+    	}
+	    return (sum_ratings / skills.size());
     }
 	private class drawEdges extends SimpleBehaviour
 	{
@@ -136,6 +159,13 @@ public class Task extends Agent{
 			{
 				if(re.GetTickCount() % 10 == 0) //lets say 10 ticks is  one week.
 				{
+					double totalWorkerWorth = 0;
+					for(Worker w : assignedWorkers)
+					{
+						totalWorkerWorth += getWorkerValue(w);
+					}
+					double calculatedDuration = cost / totalWorkerWorth;
+					rate = (100)/(calculatedDuration * 4.34812141);
 					//System.out.println(getName() + " I am progressing.\n");
 					
 					//here we would calculate rate
@@ -183,9 +213,6 @@ public class Task extends Agent{
 		return this.criticalCost;
 	}
 	
-	public String[] getSkills(){
-		return this.skills;
-	}
 	
 	//SETTERS
 	
