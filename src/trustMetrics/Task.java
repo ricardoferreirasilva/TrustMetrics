@@ -94,6 +94,7 @@ public class Task extends Agent{
     }
 	public void setAvailable() {
 	      available = true;
+	      if(getNamePrivate().equals("End")) finished=true;
 	    }
 	public void addRequiredSkillset(String... skills)
 	{
@@ -114,6 +115,22 @@ public class Task extends Agent{
     }
     public void addWorker(Worker w) {
 	      assignedWorkers.add(w);
+	      w.assigned = true;
+	      context = ContextUtils.getContext(this);
+		  net = (Network<Object>) context.getProjection("Network");
+		  ArrayList<RepastEdge> list = new ArrayList<RepastEdge>();
+		  for (RepastEdge edge : net.getEdges()) {
+			if(edge.getSource() instanceof Worker)
+			{
+				Worker edgeWorker = (Worker) edge.getSource();
+			    if(w.getNamePrivate().equals(edgeWorker.getNamePrivate()))list.add(edge);
+			}
+		  }
+		  for (RepastEdge edge : list) {
+		  	net.removeEdge(edge);
+		  }
+		  net.addEdge(w,this);
+		  System.out.println(w.getNamePrivate()+" ("+getWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
     }
     public double getWorkerValue(Worker w) {
     	int sum_ratings = 0; //Sum of the ratings of the workers skils that are required by the Task.
@@ -155,7 +172,7 @@ public class Task extends Agent{
 		@Override
 		public void action() 
 		{
-			if(available && !finished)
+			if(available && !finished && assignedWorkers.size() > 0 && !getNamePrivate().equals("End"))
 			{
 				if(re.GetTickCount() % 10 == 0) //lets say 10 ticks is  one week.
 				{
@@ -170,12 +187,18 @@ public class Task extends Agent{
 					
 					//here we would calculate rate
 					
-					//completion += rate; -> actual operation
-					
-					completion += 25; //for debbugging and checking if progress is working
-					if(completion >= 100) finished = true;
+					completion += rate; //-> actual operation
+					System.out.println(getNamePrivate()+" Rate: "+rate+"%/week\n");
+					System.out.println(getNamePrivate()+" Done: "+completion+"% \n");
+					//completion += 25; //for debbugging and checking if progress is working
+					if(completion >= 100)
+					{
+						finished = true;
+						for(Worker w: assignedWorkers) w.assigned = false;
+					}
 				}	
 			}
+			
 			
 		}
 		@Override

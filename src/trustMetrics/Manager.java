@@ -1,12 +1,14 @@
 package trustMetrics;
 import java.awt.Color;
 import java.util.*;
+
 import jade.content.lang.Codec;
 import jade.content.lang.Codec.CodecException;
 import jade.content.lang.sl.SLCodec;
 import jade.content.onto.Ontology;
 import jade.content.onto.OntologyException;
 import repast.simphony.context.Context;
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.util.ContextUtils;
@@ -32,7 +34,7 @@ public class Manager extends Agent{
 	private HashSet<Task> projectTasks;
 	private static ArrayList<Task> criticalPath;
 	private ArrayList<Task> availableTasks;
-	
+	private ArrayList<Worker> workerList;
 	String name;
 	public Manager(String name,Task... tasks)
 	{
@@ -40,6 +42,7 @@ public class Manager extends Agent{
 		projectTasks = new HashSet<Task>();
 		criticalPath = new ArrayList<Task>();
 		availableTasks = new ArrayList<Task>();
+		workerList = new ArrayList<Worker>();
 		for(Task t: tasks)
 		{
 			projectTasks.add(t);
@@ -64,6 +67,13 @@ public class Manager extends Agent{
 		 addBehaviour(criticalPathBehaviour);
 		 addBehaviour(availableTasksBehaviour);
 		
+	}
+	public void addWorkers(Worker... workers)
+	{
+		for(Worker w: workers)
+		{
+			workerList.add(w);
+		}
 	}
 	private class criticalPathBehaviour extends SimpleBehaviour
 	{
@@ -110,7 +120,10 @@ public class Manager extends Agent{
 					if(t.getNamePrivate().equals("End"))
 					{
 						t.setAvailable();
-						//Project Complete
+						System.out.println("Manager - Project Complete.");
+						d = true;
+						RunEnvironment.getInstance().endRun();
+						
 					}
 					else
 					{
@@ -119,8 +132,14 @@ public class Manager extends Agent{
 					}
 				}
 			}
-			System.out.print("Manager - Available: "+availableTasks.toString()+"\n");
-			//d = true;
+			//System.out.print("Manager - Available: "+availableTasks.toString()+"\n");
+			for(Worker w: workerList)
+			{
+				if(!w.assigned)
+				{
+					if(availableTasks.size() > 0) availableTasks.get(0).addWorker(w);
+				}
+			}
 			
 			
 		}

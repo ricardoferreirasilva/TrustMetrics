@@ -50,10 +50,12 @@ public class RepastStart extends RepastSLauncher {
 		
 		Task start = new Task("Start",0,A);
 		
-		Manager m = new Manager("Manager",start,A,B,C,end);
 		
-		Worker w1 = new Worker("Worker 1","HurtingChildren", "Furniture Testing");
+		Worker w1 = new Worker("Worker 1","HurtingChildren", "FurnitureTesting");
 		Worker w2 = new Worker("Worker 2","FurnitureTesting");
+		
+		Manager m = new Manager("Manager",start,A,B,C,end);
+		m.addWorkers(w1,w2);
 		// Project def
 		try {
 			agentContainer.acceptNewAgent("Task 1", end).start();

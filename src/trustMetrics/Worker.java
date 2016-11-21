@@ -31,6 +31,7 @@ public class Worker extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
 	public HashMap<String,Float> skillSet;
+	public boolean assigned;
 	private String name;
 	//Constructor
 	public Worker(String name,String... skills)
@@ -41,6 +42,7 @@ public class Worker extends Agent{
 		{
 			skillSet.put(s,(float) 1);
 		}
+		this.assigned = false;
 		
 	}
 	//Adds a skill with a custom rating.
