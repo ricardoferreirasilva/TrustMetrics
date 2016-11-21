@@ -9,6 +9,7 @@ import jade.content.onto.Ontology;
 import jade.content.onto.OntologyException;
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
+import repast.simphony.essentials.RepastEssentials;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.util.ContextUtils;
@@ -30,6 +31,7 @@ import sajas.proto.SubscriptionInitiator;
 public class Manager extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
+	private RepastEssentials re = new RepastEssentials();
 	
 	private HashSet<Task> projectTasks;
 	private static ArrayList<Task> criticalPath;
@@ -120,7 +122,7 @@ public class Manager extends Agent{
 					if(t.getNamePrivate().equals("End"))
 					{
 						t.setAvailable();
-						System.out.println("Manager - Project Complete.");
+						System.out.println("Manager - Project Complete. "+ "("+(re.GetTickCount()/ 10)+" weeks).");
 						d = true;
 						RunEnvironment.getInstance().endRun();
 						
