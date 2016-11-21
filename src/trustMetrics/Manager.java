@@ -135,11 +135,17 @@ public class Manager extends Agent{
 				}
 			}
 			//System.out.print("Manager - Available: "+availableTasks.toString()+"\n");
-			for(Worker w: workerList)
+			for(Task t: criticalPath)
 			{
-				if(!w.assigned)
+				if(availableTasks.contains(t))
 				{
-					if(availableTasks.size() > 0) availableTasks.get(0).addWorker(w);
+					for(Worker w: workerList)
+					{
+						if(!w.assigned)
+						{
+							t.addWorker(w);
+						}
+					}
 				}
 			}
 			

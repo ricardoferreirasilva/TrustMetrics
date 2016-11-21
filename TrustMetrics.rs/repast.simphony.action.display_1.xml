@@ -49,9 +49,9 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>418551303</hashCode>
+    <hashCode>1513438241</hashCode>
   </schedParams>
-  <layoutClassName>repast.simphony.visualization.visualization2D.Random2DLayout</layoutClassName>
+  <layoutClassName>repast.simphony.visualization.visualization2D.layout.CircleLayout2D</layoutClassName>
   <layoutProjection>Network</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
