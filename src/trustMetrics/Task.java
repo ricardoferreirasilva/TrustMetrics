@@ -1,6 +1,7 @@
 package trustMetrics;
 
 import java.awt.Color;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -11,6 +12,7 @@ import jade.content.onto.Ontology;
 import jade.content.onto.OntologyException;
 import repast.simphony.context.Context;
 import repast.simphony.essentials.RepastEssentials;
+import repast.simphony.space.graph.JungEdgeTransformer;
 import repast.simphony.space.graph.Network;
 import repast.simphony.space.graph.RepastEdge;
 import repast.simphony.util.ContextUtils;
