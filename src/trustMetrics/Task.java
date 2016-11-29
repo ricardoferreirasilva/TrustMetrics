@@ -207,6 +207,8 @@ public class Task extends Agent{
 					//completion += 25; //for debbugging and checking if progress is working
 					if(completion >= 100)
 					{
+						// Relevant commentary:  Here we should recalculate IT/Value of the Workers involved.
+						// How can we mix it up ?  Give out a delay factor for completion? 
 						finished = true;
 						for(Worker w: assignedWorkers) w.assigned = false;
 					}

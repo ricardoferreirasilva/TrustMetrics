@@ -141,7 +141,8 @@ public class Manager extends Agent{
 				{
 					for(Worker w: workerList)
 					{
-						if(!w.assigned)
+						if(!w.assigned) // Relevant commentary: De momento estamos a adicionar todos os workers para uma só tarefa.
+										// Necessário pensar num algoritmo para isto, para alocações paralelas.
 						{
 							t.addWorker(w);
 						}
