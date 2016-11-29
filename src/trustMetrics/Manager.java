@@ -37,6 +37,7 @@ public class Manager extends Agent{
 	private static ArrayList<Task> criticalPath;
 	private ArrayList<Task> availableTasks;
 	private ArrayList<Worker> workerList;
+	private ArrayList<RWSV> rwsvList;
 	String name;
 	public Manager(String name,Task... tasks)
 	{
@@ -45,6 +46,7 @@ public class Manager extends Agent{
 		criticalPath = new ArrayList<Task>();
 		availableTasks = new ArrayList<Task>();
 		workerList = new ArrayList<Worker>();
+		rwsvList = new ArrayList<RWSV>();
 		for(Task t: tasks)
 		{
 			projectTasks.add(t);
@@ -75,6 +77,13 @@ public class Manager extends Agent{
 		for(Worker w: workers)
 		{
 			workerList.add(w);
+			HashMap<String,Float> sset = w.getSkillSet();
+			Iterator it = sset.entrySet().iterator();	
+			while(it.hasNext()){
+				Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
+				RWSV rel = new RWSV(w, pair.getKey(), pair.getValue());
+				rwsvList.add(rel);
+			}
 		}
 	}
 	private class criticalPathBehaviour extends SimpleBehaviour

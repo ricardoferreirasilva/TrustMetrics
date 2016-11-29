@@ -1,6 +1,8 @@
 package trustMetrics;
 
-public class RWSV {
+// Relation Worker/Skill/Value
+
+public class RWSV {  
 	Worker worker;
 	String skill;
 	float value;

@@ -57,7 +57,8 @@ public class RepastStart extends RepastSLauncher {
 		skillSet.put("FurnitureTesting", (float)0.5);
 		Worker w1 = new Worker("Worker 1",skillSet);
 		
-		skillSet.clear();
+		
+		skillSet = new HashMap<String,Float>();    // important, so the same reference isn't made twice
 		skillSet.put("HurtingChildren", (float)0.5);
 		skillSet.put("FurnitureTesting", (float)1);
 		Worker w2 = new Worker("Worker 2",skillSet);

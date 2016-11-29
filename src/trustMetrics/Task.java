@@ -135,13 +135,13 @@ public class Task extends Agent{
 		  System.out.println(w.getNamePrivate()+" ("+getWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
     }
     public double getWorkerValue(Worker w) {
-    	int sum_ratings = 0; //Sum of the ratings of the workers skils that are required by the Task.
+    	float sum_ratings = 0; //Sum of the ratings of the workers skills that are required by the Task.
     	//For each skill the worker has.
-    	for(String s: w.skillSet.keySet())
+    	for(String s: w.getSkillSet().keySet())
     	{
     		if(skills.contains(s))
     		{
-    			sum_ratings += w.skillSet.get(s);
+    			sum_ratings += w.getSkillSet().get(s);
     		}
     	}
 	    return (sum_ratings / skills.size());

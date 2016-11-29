@@ -30,7 +30,7 @@ import sajas.proto.SubscriptionInitiator;
 public class Worker extends Agent{
 	private Context<?> context;
 	private Network<Object> net;
-	public HashMap<String,Float> skillSet;
+	private HashMap<String,Float> skillSet;
 	public boolean assigned;
 	private String name;
 	//Constructor
@@ -41,11 +41,7 @@ public class Worker extends Agent{
 		this.assigned = false;
 	}
 	
-	//Adds a skill with a custom rating.
-	public void addSkill(String s,float rating)
-	{
-		skillSet.put(s, rating);
-	}
+
 	public void setup()
 	{
 		DFAgentDescription template = new DFAgentDescription();
@@ -68,5 +64,9 @@ public class Worker extends Agent{
 	// Exception to format, because using "getName()" would need to override Agent class
 	public String getNamePrivate(){
 		return this.name;
+	}
+	
+	public HashMap<String, Float> getSkillSet(){
+		return this.skillSet;
 	}
 }
