@@ -132,7 +132,7 @@ public class Task extends Agent{
 		  	net.removeEdge(edge);
 		  }
 		  net.addEdge(w,this);
-		  System.out.println(w.getNamePrivate()+" ("+getWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
+		  System.out.println(w.getNamePrivate()+" (Perceived Value: "+getWorkerValue(w)+")" + " (Real Value: "+getRealWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
     }
     public double getWorkerValue(Worker w) {
     	float sum_ratings = 0; //Sum of the ratings of the workers skills that are required by the Task.
@@ -146,6 +146,18 @@ public class Task extends Agent{
     	}
 	    return (sum_ratings / skills.size());
     }
+    
+    public double getRealWorkerValue(Worker w){
+    	float sum_ratings = 0;
+    	for(String s: w.getSkillSet().keySet())
+    	{
+    		if(skills.contains(s))
+    			sum_ratings += w.getSkillSet().get(s);
+    	}
+    	return (sum_ratings /skills.size());
+    	
+    }
+    
 	private class drawEdges extends SimpleBehaviour
 	{
 		boolean drawedYet = false;
@@ -181,7 +193,7 @@ public class Task extends Agent{
 					double totalWorkerWorth = 0;
 					for(Worker w : assignedWorkers)
 					{
-						totalWorkerWorth += getWorkerValue(w);
+						totalWorkerWorth += getRealWorkerValue(w);
 					}
 					double calculatedDuration = cost / totalWorkerWorth;
 					rate = (100)/(calculatedDuration * 4.34812141);
