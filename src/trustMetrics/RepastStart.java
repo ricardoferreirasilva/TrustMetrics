@@ -50,9 +50,17 @@ public class RepastStart extends RepastSLauncher {
 		
 		Task start = new Task("Start",0,A);
 		
+		HashMap<String, Float> skillSet = new HashMap<String,Float>();
 		
-		Worker w1 = new Worker("Worker 1","HurtingChildren", "FurnitureTesting");
-		Worker w2 = new Worker("Worker 2","FurnitureTesting");
+		skillSet.clear();
+		skillSet.put("HurtingChildren", (float)1);
+		skillSet.put("FurnitureTesting", (float)0.5);
+		Worker w1 = new Worker("Worker 1",skillSet);
+		
+		skillSet.clear();
+		skillSet.put("HurtingChildren", (float)0.5);
+		skillSet.put("FurnitureTesting", (float)1);
+		Worker w2 = new Worker("Worker 2",skillSet);
 		
 		Manager m = new Manager("Manager",start,A,B,C,end);
 		m.addWorkers(w1,w2);

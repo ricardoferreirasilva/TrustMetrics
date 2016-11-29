@@ -34,17 +34,13 @@ public class Worker extends Agent{
 	public boolean assigned;
 	private String name;
 	//Constructor
-	public Worker(String name,String... skills)
+	public Worker(String name,HashMap<String,Float> sset)
 	{
 		this.name = name;
-		skillSet = new HashMap<String,Float>();
-		for(String s: skills)
-		{
-			skillSet.put(s,(float) 1);
-		}
+		skillSet = sset;
 		this.assigned = false;
-		
 	}
+	
 	//Adds a skill with a custom rating.
 	public void addSkill(String s,float rating)
 	{
