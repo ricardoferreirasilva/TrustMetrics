@@ -33,12 +33,19 @@ public class Worker extends Agent{
 	private HashMap<String,Float> skillSet;
 	public boolean assigned;
 	private String name;
+	private ArrayList<RWSV> rwsvList = new ArrayList<RWSV>();
 	//Constructor
 	public Worker(String name,HashMap<String,Float> sset)
 	{
 		this.name = name;
 		skillSet = sset;
 		this.assigned = false;
+		Iterator it = sset.entrySet().iterator();	
+		while(it.hasNext()){
+			Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
+			RWSV rel = new RWSV(this, pair.getKey(), (float) 1);  // Manager always assume 1.0 when on a new worker.
+			rwsvList.add(rel);
+		}
 	}
 	
 
@@ -68,5 +75,13 @@ public class Worker extends Agent{
 	
 	public HashMap<String, Float> getSkillSet(){
 		return this.skillSet;
+	}
+	
+	public float getSkillValue_RWSV(String skill){
+		for(RWSV r: rwsvList){
+			if(r.getSkill().equals(skill))
+				return r.getValue();
+		}
+		return 0;  // If not in the skillSet, assume zero skill.
 	}
 }

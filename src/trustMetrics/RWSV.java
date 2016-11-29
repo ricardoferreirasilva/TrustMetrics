@@ -3,9 +3,9 @@ package trustMetrics;
 // Relation Worker/Skill/Value
 
 public class RWSV {  
-	Worker worker;
-	String skill;
-	float value;
+	private Worker worker;
+	private String skill;
+	private float value;
 	
 	RWSV(Worker worker, String skill, float value){
 		this.worker = worker;

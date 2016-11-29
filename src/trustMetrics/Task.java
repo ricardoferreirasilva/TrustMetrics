@@ -141,7 +141,7 @@ public class Task extends Agent{
     	{
     		if(skills.contains(s))
     		{
-    			sum_ratings += w.getSkillSet().get(s);
+    			sum_ratings += w.getSkillValue_RWSV(s); // Manager Uses RWSV values not real values
     		}
     	}
 	    return (sum_ratings / skills.size());
