@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 import jade.content.lang.Codec;
 import jade.content.lang.Codec.CodecException;
@@ -39,6 +40,7 @@ public class Task extends Agent{
 	private Network<Object> net;
 	private RepastEssentials re = new RepastEssentials();
 	
+	private int calculated_expected_weeks = -1;
 	private boolean finished;
 	private boolean available;
 	private int cost; //this should be the estimated time for the task to take.
@@ -132,9 +134,9 @@ public class Task extends Agent{
 		  	net.removeEdge(edge);
 		  }
 		  net.addEdge(w,this);
-		  System.out.println(w.getNamePrivate()+" (Perceived Value: "+getWorkerValue(w)+")" + " (Real Value: "+getRealWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
+		  System.out.println(w.getNamePrivate()+" (Perceived Value: "+getExpectedWorkerValue(w)+")" + " (Real Value: "+getRealWorkerValue(w)+")" + " -> " + getNamePrivate()+"\n");
     }
-    public double getWorkerValue(Worker w) {
+    public double getExpectedWorkerValue(Worker w) {
     	float sum_ratings = 0; //Sum of the ratings of the workers skills that are required by the Task.
     	//For each skill the worker has.
     	for(String s: w.getSkillSet().keySet())
@@ -188,15 +190,43 @@ public class Task extends Agent{
 		{
 			if(available && !finished && assignedWorkers.size() > 0 && !getNamePrivate().equals("End"))
 			{
+				// IF not yet calculated,
+				// Calculate how many weeks we expect to take, 
+				// given the number of workers assigned +
+				// their assumed worth given the skillset required
+				if(calculated_expected_weeks==-1){  
+					float expectedTotalWorkerWorth = 0;
+					for(Worker w : assignedWorkers)
+					{
+						expectedTotalWorkerWorth += getExpectedWorkerValue(w);
+					}
+					float expectedmonths = cost / expectedTotalWorkerWorth;
+					int expectedweeks = (int)Math.ceil(expectedmonths * 4.34812141);   // Number of weeks per month 4.34812141
+					
+					//expectedweeks to complete right here. (see below CTRL+F expectedweeks)
+					
+					
+					
+				}
 				if(re.GetTickCount() % 10 == 0) //lets say 10 ticks is  one week.
 				{
-					double totalWorkerWorth = 0;
+					float totalWorkerWorth = 0;
 					for(Worker w : assignedWorkers)
 					{
 						totalWorkerWorth += getRealWorkerValue(w);
 					}
-					double calculatedDuration = cost / totalWorkerWorth;
-					rate = (100)/(calculatedDuration * 4.34812141);
+					float calculatedDuration = cost / totalWorkerWorth;
+					rate = (100)/(calculatedDuration * 4.34812141);  // Number of weeks per month 4.34812141
+					
+					//Randomize unexpected event
+					Random randomGenerator = new Random();
+					int chance_of_event = randomGenerator.nextInt(100); // chance_of_event [0..99]
+					if(chance_of_event <10) // 10% chance of 50% faster rate
+						rate += 0.5*rate;
+					else if(chance_of_event >= 90) // 10% chance of 50% slower rate
+						rate -= 0.5*rate;
+					
+					
 					//System.out.println(getName() + " I am progressing.\n");
 					
 					//here we would calculate rate
@@ -207,8 +237,10 @@ public class Task extends Agent{
 					//completion += 25; //for debbugging and checking if progress is working
 					if(completion >= 100)
 					{
-						// Relevant commentary:  Here we should recalculate IT/Value of the Workers involved.
-						// How can we mix it up ?  Give out a delay factor for completion? 
+						//Change each worker perceivedvalue on assignedWorkers
+						// with FIRE parameters [IT, equation (1)]
+						// By comparing weeksTook vs expectedweeks
+						
 						finished = true;
 						for(Worker w: assignedWorkers) w.assigned = false;
 					}
