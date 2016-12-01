@@ -251,9 +251,10 @@ public class Task extends Agent {
 					// progress is working
 					if (completion >= 100) {
 						finished = true;
+						float rating;
 						for (Worker w : assignedWorkers) {
 							
-							float rating = 0; // if(expectedweeks == weeksTook)
+							rating = 0; // if(expectedweeks == weeksTook)
 							if (expectedweeks > weeksTook) {
 								// To simplify, we use <positive value in ]0,
 								// 1]> = (1/5) * weeks_Before_Expected
@@ -274,11 +275,11 @@ public class Task extends Agent {
 							}
 							System.out.println("Calculated weeks: " + expectedweeks + " || weeks Took: " + weeksTook);
 							System.out.println("Task " + name + " Rating : " + rating + " Worker: " + w.getNamePrivate());
-					
 							//TODO: // Change each worker perceivedvalue on
 							// assignedWorkers
 							// with FIRE parameters [IT, equation (1)]
 							// based on rating (depending on skillSet for this task)
+							w.iterateOverFIRE(Task.this,  rating);
 							w.assigned = false;
 						}
 					}

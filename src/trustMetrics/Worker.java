@@ -1,6 +1,7 @@
 package trustMetrics;
 import java.awt.Color;
 import java.util.*;
+import java.util.AbstractMap.SimpleEntry;
 
 import jade.content.lang.Codec;
 import jade.content.lang.Codec.CodecException;
@@ -34,6 +35,8 @@ public class Worker extends Agent{
 	public boolean assigned;
 	private String name;
 	private ArrayList<RWSV> rwsvList = new ArrayList<RWSV>();
+	private ArrayList<SimpleEntry<Task,Float>> pastProjectsRatings = new ArrayList<SimpleEntry<Task, Float>>();
+	
 	//Constructor
 	public Worker(String name,HashMap<String,Float> sset)
 	{
@@ -66,6 +69,10 @@ public class Worker extends Agent{
 		
 	}
 
+	public void iterateOverFIRE(Task t, float rating){
+		int pastrecordssize = pastProjectsRatings.size();
+		//if(pastrecordss) TODO Add FIRE IT calculations.  Check need for IT storage.
+	}
 
 	// GETTERS
 	// Exception to format, because using "getName()" would need to override Agent class
