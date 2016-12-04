@@ -46,7 +46,7 @@ public class Worker extends Agent{
 		Iterator it = sset.entrySet().iterator();	
 		while(it.hasNext()){
 			Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
-			RWSV rel = new RWSV(this, pair.getKey(), (float) 1);  // Manager always assume 1.0 when on a new worker.
+			RWSV rel = new RWSV(this, pair.getKey(), (float) 0, (float)1);  // Manager always assume 1.0 when on a new worker.
 			rwsvList.add(rel);
 		}
 	}
@@ -70,8 +70,46 @@ public class Worker extends Agent{
 	}
 
 	public void iterateOverFIRE(Task t, float rating){
-		int pastrecordssize = pastProjectsRatings.size();
-		//if(pastrecordss) TODO Add FIRE IT calculations.  Check need for IT storage.
+		// TODO Add FIRE IT calculations.  Check need for IT storage.
+		pastProjectsRatings.add(new SimpleEntry<Task, Float>(t, rating));
+		
+		for(String skill: t.getRequiredSkills()){ // Iterate over each Skill
+			
+			//Variables necessary for equations
+			int n = numberOfRecordsWithGivenSkill(skill);
+			float weight = calculateSmallestWeight(n); //
+			
+			
+			//Equation 1
+			updateIT(skill, weight);
+			
+			//Equation 2
+			float eq2;  // Equation 2 FIRE
+			if(n<= 4)  // Equation 2 FIRE with m = 4
+				eq2 = n / 4;
+			else
+				eq2 = 1;
+			
+			//Equation 3
+			float eq3;
+			float eq3sum = 0;
+			float currentIT = getITForGivenSkill(skill);
+			for(int i = 0; i<pastProjectsRatings.size() ; i++){ // This syntax used to ensure we fetch the older ones first
+																// Somatório in eq3 calculated in this for
+				SimpleEntry<Task,Float> projrating = pastProjectsRatings.get(i);
+				if(projrating.getKey().getRequiredSkills().contains(skill)){
+					eq3sum += (float) weight * Math.abs(projrating.getValue() - currentIT) / 2; 
+					weight *=2;
+				}
+			}
+			eq3 = 1-eq3sum;  // End result of eq3
+			
+			float eq4 = eq3*eq2;  // Equation 4 of FIRE
+			
+			//Store reliability on RWSV of this skill 
+			storeReliability(skill, eq4);
+			
+		}
 	}
 
 	// GETTERS
@@ -90,5 +128,55 @@ public class Worker extends Agent{
 				return r.getValue();
 		}
 		return 0;  // If not in the skillSet, assume zero skill.
+	}
+	
+	//UTILITIES
+	
+	public float calculateSmallestWeight(int size){
+		float counter = 0;
+		for(int i = 0; i < size;i++){
+			counter += Math.pow(2, i);
+		}
+		return (float)1.0/(counter);
+	}
+	
+	public int numberOfRecordsWithGivenSkill(String skill){
+		int counter = 0;
+		for(SimpleEntry<Task,Float> projrating: pastProjectsRatings)
+			if(projrating.getKey().getRequiredSkills().contains(skill))
+				counter++;
+		return counter;
+	}
+	
+	public float getITForGivenSkill(String skill){
+		for(RWSV rel: rwsvList)
+			if(rel.getSkill().equals(skill))
+				return rel.getValue();
+		return 0;
+	}
+	
+	public void storeReliability(String skill, float reliability){
+		for(RWSV rel: rwsvList)
+			if(rel.getSkill().equals(skill))
+				rel.setReliability(reliability);
+	}
+	
+	public void updateIT(String skill, float weight){
+		//Equation 1
+		float thisweight = weight + 0;
+		float sum = 0;
+		for(int i = 0 ; i<pastProjectsRatings.size();i++){
+			SimpleEntry<Task,Float> projrating = pastProjectsRatings.get(i);
+			if(projrating.getKey().getRequiredSkills().contains(skill)){
+				sum += (float) projrating.getValue() * thisweight;
+				thisweight *=2;
+			}
+		}
+		
+		
+		for(RWSV rel: rwsvList)
+			if(rel.getSkill().equals(skill))
+				rel.updateITValue(sum);
+				
 	}
 }

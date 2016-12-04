@@ -312,6 +312,9 @@ public class Task extends Agent {
 		return this.cost;
 	}
 
+	public ArrayList<String> getRequiredSkills(){
+		return this.skills;
+	}
 	// Exception to format, because using "getName()" would need to override
 	// Agent class
 	public String getNamePrivate() {
