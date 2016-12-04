@@ -145,6 +145,12 @@ public class Manager extends Agent{
 										// Necessário pensar num algoritmo para isto, para alocações paralelas.
 						{
 							t.addWorker(w);
+							for(String skill : t.skills)
+							{
+								float v = w.getSkillValue_RWSV(skill);
+								System.out.println("Manager: " + w.getNamePrivate() +" - Skill: "+skill+" Value: "+v);
+							}
+
 						}
 					}
 				}

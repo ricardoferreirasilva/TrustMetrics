@@ -42,6 +42,7 @@ public class Task extends Agent {
 
 	private int expectedweeks = -1;
 	private int weeksTook = 0;
+	
 	private boolean finished;
 	private boolean available;
 	private int cost; // this should be the estimated time for the task to take.
@@ -52,7 +53,7 @@ public class Task extends Agent {
 	// the tasks on which this task is dependent
 	private HashSet<Task> dependencies = new HashSet<Task>();
 	// the skills on which this task is dependent
-	private ArrayList<String> skills;
+	public ArrayList<String> skills;
 
 	ArrayList<Worker> assignedWorkers;
 	double completion; // From 0-100%, when it reaches 100 finishes.

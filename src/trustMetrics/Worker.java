@@ -84,6 +84,7 @@ public class Worker extends Agent{
 		return this.skillSet;
 	}
 	
+	//Returns supposed skill value (by manager), not real value.
 	public float getSkillValue_RWSV(String skill){
 		for(RWSV r: rwsvList){
 			if(r.getSkill().equals(skill))
