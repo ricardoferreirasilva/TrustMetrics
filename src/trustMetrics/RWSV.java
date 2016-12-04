@@ -6,11 +6,13 @@ public class RWSV {
 	private Worker worker;
 	private String skill;
 	private float value;
+	private float reliability;
 	
-	RWSV(Worker worker, String skill, float value){
+	RWSV(Worker worker, String skill, float value, float reliability){
 		this.worker = worker;
 		this.skill = skill;
 		this.value = value;
+		this.reliability = reliability;
 	}
 	
 	
@@ -27,5 +29,14 @@ public class RWSV {
 	}
 	
 	
+	// SETTERS
+	
+	public void setReliability(float rel){
+		this.reliability = rel;
+	}
+	
+	public void updateITValue(float newsum){
+		this.value = newsum;
+	}
 	
 }

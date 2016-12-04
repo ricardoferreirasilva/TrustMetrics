@@ -204,7 +204,7 @@ public class Task extends Agent {
 				if (expectedweeks == -1) {
 					float expectedTotalWorkerWorth = 0;
 					for (Worker w : assignedWorkers) {
-						expectedTotalWorkerWorth += getExpectedWorkerValue(w);
+						expectedTotalWorkerWorth += getExpectedWorkerValue(w) + 1;
 					}
 					float expectedmonths = cost / expectedTotalWorkerWorth;
 					expectedweeks = (int) Math.ceil(expectedmonths * 4.34812141); // Number
@@ -221,7 +221,7 @@ public class Task extends Agent {
 					weeksTook++;
 					float totalWorkerWorth = 0;
 					for (Worker w : assignedWorkers) {
-						totalWorkerWorth += getRealWorkerValue(w);
+						totalWorkerWorth += getRealWorkerValue(w) + 1;
 					}
 					float calculatedDuration = cost / totalWorkerWorth;
 					rate = (100) / (calculatedDuration * 4.34812141); // Number
@@ -313,6 +313,9 @@ public class Task extends Agent {
 		return this.cost;
 	}
 
+	public ArrayList<String> getRequiredSkills(){
+		return this.skills;
+	}
 	// Exception to format, because using "getName()" would need to override
 	// Agent class
 	public String getNamePrivate() {
