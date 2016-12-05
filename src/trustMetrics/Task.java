@@ -276,11 +276,10 @@ public class Task extends Agent {
 							}
 							System.out.println("Calculated weeks: " + expectedweeks + " || weeks Took: " + weeksTook);
 							System.out.println("Task " + name + " Rating : " + rating + " Worker: " + w.getNamePrivate());
-							//TODO: // Change each worker perceivedvalue on
-							// assignedWorkers
-							// with FIRE parameters [IT, equation (1)]
-							// based on rating (depending on skillSet for this task)
-							w.iterateOverFIRE(Task.this,  rating);
+							
+							w.iterateOverFIRE_IT(Task.this,  rating);
+							//TODO Iterate Over CR [2.4]
+							w.iterateOverFIRE_CR();
 							w.assigned = false;
 						}
 					}

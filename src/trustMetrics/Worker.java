@@ -69,8 +69,8 @@ public class Worker extends Agent{
 		
 	}
 
-	public void iterateOverFIRE(Task t, float rating){
-		// TODO Add FIRE IT calculations.  Check need for IT storage.
+	public void iterateOverFIRE_IT(Task t, float rating){
+		
 		pastProjectsRatings.add(new SimpleEntry<Task, Float>(t, rating));
 		
 		for(String skill: t.getRequiredSkills()){ // Iterate over each Skill
@@ -110,6 +110,10 @@ public class Worker extends Agent{
 			storeReliability(skill, eq4);
 			
 		}
+	}
+	
+	public void iterateOverFIRE_CR(){
+		
 	}
 
 	// GETTERS
