@@ -53,11 +53,14 @@ public class Worker extends Agent{
 	//Gets the last rating on that skill.
 	public double getLastRWSV()
 	{
-		if(rwsvList.size() > 0)
+		if(this.name.equals("Worker 1"))
 		{
-			return rwsvList.get(rwsvList.size()-1).getValue();
+			if(rwsvList.size() > 0)
+			{
+				return rwsvList.get(rwsvList.size()-1).getValue();
+			}
 		}
-		else return 0;
+		return 0;
 	}
 
 	public void setup()
