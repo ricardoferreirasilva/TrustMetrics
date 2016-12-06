@@ -51,6 +51,15 @@ public class Manager extends Agent{
 		}
 		
 	}
+	public double getFinishedTasks()
+	{
+		int f = 0;
+		for(Task t: criticalPath)
+		{
+			if(t.getFinished()) f++;
+		}
+		return f;
+	}
 	public void setup()
 	{
 		DFAgentDescription template = new DFAgentDescription();
@@ -134,29 +143,41 @@ public class Manager extends Agent{
 					}
 				}
 			}
-			//System.out.print("Manager - Available: "+availableTasks.toString()+"\n");
+			/* WORKER ALLOCATION
+			 * 
+			 * 
+			 * 
+			 */
 			for(Task t: criticalPath)
 			{
 				if(availableTasks.contains(t))
 				{
+					//Add workers to tasks they are good at.
 					for(Worker w: workerList)
 					{
-						if(!w.assigned) // Relevant commentary: De momento estamos a adicionar todos os workers para uma só tarefa.
-										// Necessário pensar num algoritmo para isto, para alocações paralelas.
+						if(!w.assigned)
 						{
-							t.addWorker(w);
-							for(String skill : t.skills)
+							//System.out.println(w.getNamePrivate() + " Value:" + t.getExpectedWorkerValue(w));
+							if(t.getExpectedWorkerValue(w) >= 0 && !t.isHealthy())
 							{
-								float v = w.getSkillValue_RWSV(skill);
-								System.out.println("Manager: " + w.getNamePrivate() +" - Skill: "+skill+" Value: "+v);
+								t.addWorker(w);
 							}
-
+						}
+					}
+					/*One the first iteration, if the critical task is not healthy, add workers
+					despite their value until it is.
+					*/
+					if(criticalPath.indexOf(t) == 0 && !t.isHealthy())
+					{
+						for(Worker w: workerList)
+						{
+							//More effective if workers in workerlist are ordered by value to ask t.
+							if(!w.assigned) t.addWorker(w);
+							if(t.isHealthy()) break;
 						}
 					}
 				}
 			}
-			
-			
 		}
 		@Override
 		public boolean done() {

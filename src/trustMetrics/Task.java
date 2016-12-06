@@ -145,8 +145,19 @@ public class Task extends Agent {
 		net.addEdge(w, this);
 		System.out.println(w.getNamePrivate() + " (Perceived Value: " + getExpectedWorkerValue(w) + ")"
 				+ " (Real Value: " + getRealWorkerValue(w) + ")" + " -> " + getNamePrivate() + "\n");
+		//Recalculating rate.
 	}
-
+	//Sufficient number of workers to go according to plan
+	public boolean isHealthy()
+	{
+		double totalWorkerWorth = 0;
+		for (Worker worker : assignedWorkers) {
+			totalWorkerWorth += getRealWorkerValue(worker) + 1;
+		}
+		double calculatedDuration = cost / totalWorkerWorth;
+		if(cost > calculatedDuration) return true;
+		else return false;
+	}
 	public double getExpectedWorkerValue(Worker w) {
 		float sum_ratings = 0; // Sum of the ratings of the workers skills that
 								// are required by the Task.
