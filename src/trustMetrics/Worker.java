@@ -94,9 +94,10 @@ public class Worker extends Agent{
 			//Equation 2
 			float eq2;  // Equation 2 FIRE
 			if(n<= 4)  // Equation 2 FIRE with m = 4
-				eq2 = n / 4;
+				eq2 = (float) n / 4;
 			else
 				eq2 = 1;
+			
 			
 			//Equation 3
 			float eq3;
@@ -115,12 +116,28 @@ public class Worker extends Agent{
 			float eq4 = eq3*eq2;  // Equation 4 of FIRE
 			
 			//Store reliability on RWSV of this skill 
+			
 			storeReliability(skill, eq4);
 			
 		}
 	}
 	
-	public void iterateOverFIRE_CR(){
+	public void iterateOverFIRE_WR(double real_worker_value, Task t){
+		
+		Random randomGenerator = new Random();
+		int chance_of_event = randomGenerator.nextInt(100) - 50; // chance_of_event
+															// [0..99] - 50  [-50% e 50%]
+		double heteroevaluation = real_worker_value + (chance_of_event*real_worker_value) / 100;
+		
+		System.out.println("Task " + t.getNamePrivate() + " || " + this.getNamePrivate() + " || HeteroEval: " + heteroevaluation);	
+		
+		for(String skillz: t.getRequiredSkills()){
+			for(RWSV rel : rwsvList){
+				if(rel.getSkill().equals(skillz)){
+					rel.calculateFIREValue(heteroevaluation);
+				}
+			}
+		}
 		
 	}
 

@@ -257,8 +257,8 @@ public class Task extends Agent {
 					// here we would calculate rate
 
 					completion += rate; // -> actual operation
-					System.out.println(getNamePrivate() + " Rate: " + rate + "%/week\n");
-					System.out.println(getNamePrivate() + " Done: " + completion + "% \n");
+					// HERE System.out.println(getNamePrivate() + " Rate: " + rate + "%/week\n");
+					//System.out.println(getNamePrivate() + " Done: " + completion + "% \n");
 					// completion += 25; //for debbugging and checking if
 					// progress is working
 					if (completion >= 100) {
@@ -290,9 +290,11 @@ public class Task extends Agent {
 							
 							w.iterateOverFIRE_IT(Task.this,  rating);
 							//TODO Iterate Over CR [2.4]
-							w.iterateOverFIRE_CR();
+							
+							w.iterateOverFIRE_WR(getRealWorkerValue(w), Task.this);
 							w.assigned = false;
 						}
+						System.out.println("\n\n");
 					}
 				}
 			}

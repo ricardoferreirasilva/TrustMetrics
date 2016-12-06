@@ -39,15 +39,15 @@ public class RepastStart extends RepastSLauncher {
 		// Project def.
 		Task end = new Task("End",0);
 		
-		Task C = new Task("C",6,end);
+		Task C = new Task("C",4,end);
 		//C.addRequiredSkillset("FurnitureTesting", "HurtingChildren");
 		C.addRequiredSkillset("FurnitureTesting");
 		
-		Task B = new Task("B",5,end);
+		Task B = new Task("B",3,end);
 		//B.addRequiredSkillset("HurtingChildren");
 		B.addRequiredSkillset("FurnitureTesting");
 		
-		Task A = new Task("A",4,B,C);
+		Task A = new Task("A",2,B,C);
 		A.addRequiredSkillset("FurnitureTesting");
 		
 		Task start = new Task("Start",0,A);
