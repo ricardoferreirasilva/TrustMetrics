@@ -7,21 +7,29 @@
   <inclRandomSeed>false</inclRandomSeed>
   <scheduleParams>
     <start>1.0</start>
-    <interval>1.0</interval>
+    <interval>10.0</interval>
     <priority>-Infinity</priority>
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1710784621</hashCode>
+    <hashCode>-182950613</hashCode>
   </scheduleParams>
-  <atEnd>false</atEnd>
+  <atEnd>true</atEnd>
   <methodDataSources class="linked-hash-map">
     <entry>
-      <string>LastRWSV</string>
+      <string>Rating</string>
       <repast.simphony.data2.engine.MethodDataSourceDefinition>
-        <id>LastRWSV</id>
+        <id>Rating</id>
         <className>trustMetrics.Worker</className>
         <methodName>getLastRWSV</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+    <entry>
+      <string>Name</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Name</id>
+        <className>trustMetrics.Worker</className>
+        <methodName>getName</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
   </methodDataSources>

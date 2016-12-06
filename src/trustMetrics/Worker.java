@@ -46,7 +46,7 @@ public class Worker extends Agent{
 		Iterator it = sset.entrySet().iterator();	
 		while(it.hasNext()){
 			Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
-			RWSV rel = new RWSV(this, pair.getKey(), (float) pair.getValue(), (float)1);  // Manager always assume 1.0 when on a new worker.
+			RWSV rel = new RWSV(this, pair.getKey(), (float) pair.getValue(), (float)0.9);  // CHanged, Manager assume 0.9 when on a new worker.
 			rwsvList.add(rel);
 		}
 	}

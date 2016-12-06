@@ -47,7 +47,7 @@ public class RWSV {
 		
 		double FIREValue;
 		double wr_reliability = 1 - reliability;   // To achieve a total value of 1.
-		System.out.println("wr_reliability " + wr_reliability + "  IT  " + value + "reliability normal " + reliability);
+		System.out.println("wr_reliability " + wr_reliability + "  IT  " + value + " reliability normal " + reliability);
 		FIREValue = wr_reliability * wr + reliability * value; // Ommited division by 1
 		
 		
