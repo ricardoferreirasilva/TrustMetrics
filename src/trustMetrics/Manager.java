@@ -86,6 +86,16 @@ public class Manager extends Agent{
 			workerList.add(w);
 		}
 	}
+	
+	ArrayList<Worker> getUnassignedList(){
+		ArrayList<Worker> unassignedWorkerList = new ArrayList<>();
+		for(Worker w : this.workerList){
+			if(!w.assigned)
+				unassignedWorkerList.add(w);
+		}
+		return unassignedWorkerList;
+	}
+	
 	private class criticalPathBehaviour extends SimpleBehaviour
 	{
 		boolean d = false;
@@ -148,33 +158,21 @@ public class Manager extends Agent{
 			 * 
 			 * 
 			 */
+			ArrayList<Worker> unassignedWorkerList = getUnassignedList();
 			for(Task t: criticalPath)
 			{
 				if(availableTasks.contains(t))
 				{
-					//Add workers to tasks they are good at.
-					for(Worker w: workerList)
-					{
-						if(!w.assigned)
-						{
-							//System.out.println(w.getNamePrivate() + " Value:" + t.getExpectedWorkerValue(w));
-							if(t.getExpectedWorkerValue(w) >= 0 && !t.isHealthy())
-							{
-								t.addWorker(w);
+					while(unassignedWorkerList.size()>0 && !t.isHealthy()){
+						Worker w = Collections.max(unassignedWorkerList, new Comparator<Worker>(){
+							@Override
+							public int compare(Worker w1, Worker w2){
+								return t.getExpectedWorkerValue(w1)>t.getExpectedWorkerValue(w2)?1:-1;
 							}
-						}
-					}
-					/*One the first iteration, if the critical task is not healthy, add workers
-					despite their value until it is.
-					*/
-					if(criticalPath.indexOf(t) == 0 && !t.isHealthy())
-					{
-						for(Worker w: workerList)
-						{
-							//More effective if workers in workerlist are ordered by value to ask t.
-							if(!w.assigned) t.addWorker(w);
-							if(t.isHealthy()) break;
-						}
+						});
+						
+						t.addWorker(w);
+						unassignedWorkerList.remove(w);
 					}
 				}
 			}
@@ -243,4 +241,6 @@ public class Manager extends Agent{
 	    });
 	    return ret;
 	  }
+	
+	
 }
