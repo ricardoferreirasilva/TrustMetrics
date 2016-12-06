@@ -46,7 +46,10 @@ public class Worker extends Agent{
 		Iterator it = sset.entrySet().iterator();	
 		while(it.hasNext()){
 			Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
-			RWSV rel = new RWSV(this, pair.getKey(), (float) pair.getValue(), (float)0.9);  // CHanged, Manager assume 0.9 when on a new worker.
+			//Assume the worker real skill as self reputation
+			//Assume the worker oversells its ability
+			//Used during the selection of workers while they don't have other info the model can use 
+			RWSV rel = new RWSV(this, pair.getKey(), (float) (pair.getValue()*0.75), (float)0);
 			rwsvList.add(rel);
 		}
 	}
