@@ -131,6 +131,7 @@ public class Manager extends Agent{
 					if(t.getNamePrivate().equals("End"))
 					{
 						t.setAvailable();
+						t.completion = 100;
 						System.out.println("Manager - Project Complete. "+ "("+(re.GetTickCount()/ 10)+" weeks).");
 						d = true;
 						RunEnvironment.getInstance().endRun();
@@ -143,11 +144,15 @@ public class Manager extends Agent{
 					}
 				}
 			}
-			/* WORKER ALLOCATION
-			 * 
-			 * 
-			 * 
-			 */
+			allocateWorkersSmart();		
+		}
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return d;
+		}
+		public void allocateWorkersSmart()
+		{
 			for(Task t: criticalPath)
 			{
 				if(availableTasks.contains(t))
@@ -189,11 +194,6 @@ public class Manager extends Agent{
 					}
 				}
 			}
-		}
-		@Override
-		public boolean done() {
-			// TODO Auto-generated method stub
-			return d;
 		}
 		
 	}

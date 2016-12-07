@@ -2,6 +2,7 @@ package trustMetrics;
 
 import java.awt.Color;
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -72,7 +73,10 @@ public class Task extends Agent {
 			this.dependencies.add(t);
 		}
 		if (name.equals("Start"))
+		{
 			finished = true;
+			completion = 100;
+		}
 		else
 			finished = false;
 	}
@@ -98,7 +102,10 @@ public class Task extends Agent {
 
 	@Override
 	public String toString() {
-		return name + ": " + criticalCost;
+		int printCompletion = 0;
+		if(completion >= 100) printCompletion = 100;
+		else printCompletion = (int) completion;
+		return name + ": " + printCompletion +"%";
 	}
 
 	public void setAvailable() {
