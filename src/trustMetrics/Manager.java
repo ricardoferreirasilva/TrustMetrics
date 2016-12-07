@@ -178,6 +178,17 @@ public class Manager extends Agent{
 					}
 				}
 			}
+			//Add the remainder of the workers to the most important task. (First in the list.)
+			for(Task t: criticalPath)
+			{
+				if(availableTasks.contains(t))
+				{
+					for(Worker w: workerList)
+					{
+						if(!w.assigned) t.addWorker(w);
+					}
+				}
+			}
 		}
 		@Override
 		public boolean done() {
