@@ -185,7 +185,7 @@ public class Manager extends Agent{
 				{
 					for(Worker w: workerList)
 					{
-						if(!w.assigned) t.addWorker(w);
+						if(!w.assigned && t.getExpectedWorkerValue(w) > -1) t.addWorker(w);
 					}
 				}
 			}
