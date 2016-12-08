@@ -6,7 +6,6 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Worker}{3}
 \contentsline {subsubsection}{\numberline {2.2.2}Task}{3}
 \contentsline {subsubsection}{\numberline {2.2.3}Manager}{3}
-\contentsline {subsection}{\numberline {2.3}Interaction Protocols}{4}
 \contentsline {section}{\numberline {3}Development}{4}
 \contentsline {subsection}{\numberline {3.1}Platform}{4}
 \contentsline {subsection}{\numberline {3.2}Modules}{4}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  8 DEC 2016 12:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  8 DEC 2016 13:41
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -963,7 +963,7 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 Here is how much of TeX's memory you used:
  16524 strings out of 493334
  323912 string characters out of 3139246
- 530596 words of memory out of 3000000
+ 530632 words of memory out of 3000000
  19702 multiletter control sequences out of 15000+200000
  86997 words of font info for 91 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -973,7 +973,7 @@ Here is how much of TeX's memory you used:
 2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk>{D:/Program Files/MiKTeX 2.9
 /fonts/enc/dvips/fontname/8r.enc}<D:/Program Files/MiKTeX 2.9/fonts/type1/adobe
 /utopia/putr8a.pfb>
-Output written on Report.pdf (4 pages, 106247 bytes).
+Output written on Report.pdf (4 pages, 107165 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
