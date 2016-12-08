@@ -1,0 +1,16 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Objectives}{3}
+\contentsline {section}{\numberline {2}Specification}{3}
+\contentsline {subsection}{\numberline {2.1}Project Structure}{3}
+\contentsline {subsection}{\numberline {2.2}Agents}{3}
+\contentsline {subsubsection}{\numberline {2.2.1}Worker}{3}
+\contentsline {subsubsection}{\numberline {2.2.2}Task}{3}
+\contentsline {subsubsection}{\numberline {2.2.3}Manager}{3}
+\contentsline {subsection}{\numberline {2.3}Interaction Protocols}{4}
+\contentsline {section}{\numberline {3}Development}{4}
+\contentsline {subsection}{\numberline {3.1}Platform}{4}
+\contentsline {subsection}{\numberline {3.2}Modules}{4}
+\contentsline {subsection}{\numberline {3.3}Implementation}{4}
+\contentsline {section}{\numberline {4}Experiences}{4}
+\contentsline {section}{\numberline {5}Conclusions}{4}
+\contentsline {section}{\numberline {6}Improvement}{4}
