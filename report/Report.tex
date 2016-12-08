@@ -107,11 +107,20 @@ Just as it was described in the previous chapter, the objective of this applicat
 In order to model this problem in a multi-agent environment we decided to design three of the main entities in the problem as agents: Manager, Worker and Task. The worker and the task are mostly reactive agents since all their actions are triggered via a manager order, with an exception we will later discuss. The manager is a BDI agent and he is the true "mastermind" so to say behind the project. He has the final objective of finishing the project in the shortest amount of time and he must get to know the worker agents properly so he can effectively allocate them to the available tasks.
 
 \subsubsection{Worker}
-
+In our model a worker is a reactive agent with no autonomy whatsoever. He starts with several pairs of <Skill, Rating> given by the user. These pairs are what allows us to measure how effective a worker will be in a certain task with the following formula, which means the value of a certain worker $w$ to a task $t$.
+\begin{center}
+	$
+	ValueOf(W,T) = 
+	\frac
+	{\sum\nolimits_{S_i,R_i \in (S \in W \subseteq S \in T )} R_i}
+	{|S \in T |}
+	$
+\end{center}
+The worker also contains the set of past <Skill,Value,Reliability> triples, which is were we store the past skill evaluations the Manager made of this worker using the Interaction Trust and Witness Reliability components of FIRE. It also contains the past project ratings, which is where the past evaluations of the worker regarding a particular completed task are stored. Every time a task is completed, the manager will execute the FIRE components on all workers who were working on it. This consists of two FIRE components. The first one is Interaction Trust, which is directly related on the success of task, which means that if the task finished before it was expected, the workers predicted skill ratings will be increased, and if the task finishes after the expected date then the opposite happens. This will allow the manager to fine tune a very good approximation of the workers real skill ratings after a certain number of tasks with different requirements have been executed. The second one is Witness Reliability, which consists in having each worker report the skills of each fellow colleague in that task and give that opinion a weight according to the reliability of that worker. These two components are combined to fabricate the final opinion the manager has on the workers skills. In the beginning Witness Reputation has a higher weight in the equation but it is gradually replaced by Interaction Trust.
 \subsubsection{Task}
 A task is a reactive agent and it was mostly modelled as such out of convenience due to the capabilities of the platform used. The task is the main entity of the project and all tasks are connected via their dependencies and they always have a state that is either unavailable, available or finished. Every time all the dependencies of a task are finished, that task becomes available which means that is possible to allocate workers in order to finish it. The start state will grant us access to a set of tasks and from there we must finish all tasks in order to reach the end state.
 
-The task agent has several important properties. The expected duration is a value in $workers/month$ that is provided by the user. This means that if the total value of the workers allocated for that task equals the expected duration, then the task will take exactly one month to be completed at that rate.
+The task agent has several important properties. The expected duration is a value in workers per month that is provided by the user. This means that if the total value of the workers allocated for that task equals the expected duration, then the task will take exactly one month to be completed at that rate.
 The set of skills required by the task is also provided by the user in the configuration and it is very important in order to calculate the worth each worker has to that task. Naturally, if the intersection of the workers skills and the tasks skills is empty, then the worker will be worthless (contributes nothing) and might as well be allocated to another task where he might use his skills. Other properties include the completion of the task (0\%-100\%), the rate at which the task progresses per week and the list of currently assigned workers.
 
 The task has one behaviour which is progress task behaviour. This behaviour, which occurs for available tasks being worked on, is triggered every time a week has elapsed (10 ticks in-engine). The execution of this behaviour consists of calculating the rate of progression via total worker value with the following formulas.
@@ -126,7 +135,7 @@ The task has one behaviour which is progress task behaviour. This behaviour, whi
 		{100}
 		{\text{Calculated Duration}}$
 \end{center}
-These formulas will give us the percentage of progression each week the task is being worked on.
+These formulas will give us the percentage of progression each week the task is being worked on. It should be noted that we add 1 in order to convert from the FIRE rating range which is $[-1,1]$ (where -1 is absolutely negative, 0 neutral and 1 absolutely positive), to our own range $[0,\infty]$ which we use for real calculations of task progression.
 After the calculations are done, the rate is added to the completion and if it reaches 100\%, then the task is considered complete and the workers are free to work on another task. This behaviour is considered complete when this happens.
 \subsubsection{Manager}
 The manager is a "Beliefs-Desires-Intentions" type agent that is responsible for allocating the available workers to available tasks with the ultimate goal of finishing the project in the shortest amount of time. The manager has knowledge of all tasks and of all workers. Regarding workers, the manager can order them to work on a task and he does this by deciding if a worker is useful at working in a particular task by comparing his skills and ratings with the skills required by the task. However, when the project starts the manager has no idea what skills (or ratings at those) each worker has, so he assumes each worker to have a neutral value at each skill and that value will be updated using FIRE components each time a task is completed.
@@ -143,7 +152,10 @@ The second behaviour, is the available tasks behaviour which is executed every t
 \subsection{Modules}
 
 \subsection{Implementation}
-
+The following graphic is a representation of our class diagram.
+\begin{center}
+	\includegraphics[scale=0.4]{Model.png}
+\end{center}
 \section{Experiences}
 
 \section{Conclusions}

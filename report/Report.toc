@@ -4,12 +4,12 @@
 \contentsline {subsection}{\numberline {2.1}Project Structure}{3}
 \contentsline {subsection}{\numberline {2.2}Agents}{3}
 \contentsline {subsubsection}{\numberline {2.2.1}Worker}{3}
-\contentsline {subsubsection}{\numberline {2.2.2}Task}{3}
-\contentsline {subsubsection}{\numberline {2.2.3}Manager}{4}
-\contentsline {section}{\numberline {3}Development}{5}
-\contentsline {subsection}{\numberline {3.1}Platform}{5}
-\contentsline {subsection}{\numberline {3.2}Modules}{5}
-\contentsline {subsection}{\numberline {3.3}Implementation}{5}
-\contentsline {section}{\numberline {4}Experiences}{5}
-\contentsline {section}{\numberline {5}Conclusions}{5}
-\contentsline {section}{\numberline {6}Improvement}{5}
+\contentsline {subsubsection}{\numberline {2.2.2}Task}{4}
+\contentsline {subsubsection}{\numberline {2.2.3}Manager}{5}
+\contentsline {section}{\numberline {3}Development}{6}
+\contentsline {subsection}{\numberline {3.1}Platform}{6}
+\contentsline {subsection}{\numberline {3.2}Modules}{6}
+\contentsline {subsection}{\numberline {3.3}Implementation}{6}
+\contentsline {section}{\numberline {4}Experiences}{7}
+\contentsline {section}{\numberline {5}Conclusions}{7}
+\contentsline {section}{\numberline {6}Improvement}{7}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  8 DEC 2016 15:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  8 DEC 2016 18:52
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -959,33 +959,37 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 \tf@toc=\write4
 \openout4 = `Report.toc'.
 
- [2] [3]
-Overfull \hbox (36.64282pt too wide) in paragraph at lines 114--116
-[]\T1/futs/m/n/10.95 The task agent has sev-eral im-por-tant prop-er-ties. The 
-ex-pected du-ra-tion is a value in $\FML/futmi/m/it/10.95 workers\T1/futs/m/n/1
-0.95 /\FML/futmi/m/it/10.95 month$
+ [2] [3] [4] [5] <Model.png, id=29, 1142.2675pt x 870.25125pt>
+File: Model.png Graphic file (type png)
+
+<use Model.png>
+Package pdftex.def Info: Model.png used on input line 157.
+(pdftex.def)             Requested size: 456.89891pt x 348.09433pt.
+
+Overfull \hbox (38.64336pt too wide) in paragraph at lines 157--158
+ [] 
  []
 
-[4] [5] (Report.aux) ) 
+[6 <./Model.png (PNG copy)>] [7] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 16536 strings out of 493334
- 324029 string characters out of 3139246
- 532632 words of memory out of 3000000
- 19702 multiletter control sequences out of 15000+200000
- 90176 words of font info for 103 fonts, out of 3000000 for 9000
+ 16548 strings out of 493334
+ 324160 string characters out of 3139246
+ 531632 words of memory out of 3000000
+ 19706 multiletter control sequences out of 15000+200000
+ 91979 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,11n,60p,8819b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.
-enc} <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi
-600\ecsx1095.pk> <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jkn
-appen\ec\dpi600\ectt1440.pk><C:/Users/Ricardo/AppData/Roaming/MiKTeX/2.9/fonts/
-type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo/AppData/Roaming/MiKTeX/2
-.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Program Files/MiKTeX 2.9/fonts
-/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/adobe/u
-topia/putri8a.pfb>
-Output written on Report.pdf (5 pages, 128963 bytes).
+{D:/Program Files/MiKTeX 2.9/fon
+ts/enc/dvips/fontname/8r.enc} <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecsx1095.pk> <C:\Users\Ricardo\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk><C:/Users/Ricardo/AppData/
+Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo
+/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Progr
+am Files/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTe
+X 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
+Output written on Report.pdf (7 pages, 219409 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
+ 106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 23 words of extra memory for PDF output out of 10000 (max. 10000000)
 
