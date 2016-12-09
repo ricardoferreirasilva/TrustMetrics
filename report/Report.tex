@@ -149,13 +149,14 @@ The second behaviour, is the available tasks behaviour which is executed every t
 
 \subsection{Platform}
 
-\subsection{Modules}
-
 \subsection{Implementation}
+In our implementation of the project, each agent is a Java class and their behaviours are subclasses that extend the proper Jadex classes in order to inherit their functionality. Additionally, we have the Repast Start class in which we define all start up methods that initialize Repast, Jade and create the structure of the project itself, with the tasks, workers and manager. We also have the RWSV class, which represents a triple of a FIRE evaluation with the implemented components. Finally, we have the task-style and edge-style classes which we use to customize the visual drawing of the project in the Repast environment.
+
 The following graphic is a representation of our class diagram.
 \begin{center}
 	\includegraphics[scale=0.4]{Model.png}
 \end{center}
+
 \section{Experiences}
 
 \section{Conclusions}

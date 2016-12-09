@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  8 DEC 2016 18:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  9 DEC 2016 15:44
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -970,7 +970,7 @@ Overfull \hbox (38.64336pt too wide) in paragraph at lines 157--158
  [] 
  []
 
-[6 <./Model.png (PNG copy)>] [7] (Report.aux) ) 
+[6] [7 <./Model.png (PNG copy)>] (Report.aux) ) 
 Here is how much of TeX's memory you used:
  16548 strings out of 493334
  324160 string characters out of 3139246
@@ -987,7 +987,7 @@ Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo
 /AppData/Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Progr
 am Files/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTe
 X 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on Report.pdf (7 pages, 219409 bytes).
+Output written on Report.pdf (7 pages, 220094 bytes).
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
