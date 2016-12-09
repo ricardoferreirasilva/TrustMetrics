@@ -6,9 +6,12 @@
 \contentsline {subsubsection}{\numberline {2.2.1}Worker}{3}
 \contentsline {subsubsection}{\numberline {2.2.2}Task}{4}
 \contentsline {subsubsection}{\numberline {2.2.3}Manager}{5}
+\contentsline {subsection}{\numberline {2.3}Fire}{6}
+\contentsline {subsection}{\numberline {2.4}IT}{6}
+\contentsline {subsection}{\numberline {2.5}WR}{6}
 \contentsline {section}{\numberline {3}Development}{6}
 \contentsline {subsection}{\numberline {3.1}Platform}{6}
 \contentsline {subsection}{\numberline {3.2}Implementation}{6}
 \contentsline {section}{\numberline {4}Experiences}{7}
-\contentsline {section}{\numberline {5}Conclusions}{7}
-\contentsline {section}{\numberline {6}Improvement}{7}
+\contentsline {section}{\numberline {5}Conclusions}{10}
+\contentsline {section}{\numberline {6}Improvement}{10}

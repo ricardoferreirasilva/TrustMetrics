@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  9 DEC 2016 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  9 DEC 2016 16:37
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -963,19 +963,63 @@ LaTeX Font Info:    Font shape `U/futm/m/n' will be
 File: Model.png Graphic file (type png)
 
 <use Model.png>
-Package pdftex.def Info: Model.png used on input line 157.
+Package pdftex.def Info: Model.png used on input line 163.
 (pdftex.def)             Requested size: 456.89891pt x 348.09433pt.
 
-Overfull \hbox (38.64336pt too wide) in paragraph at lines 157--158
+Overfull \hbox (38.64336pt too wide) in paragraph at lines 163--164
  [] 
  []
 
-[6] [7 <./Model.png (PNG copy)>] (Report.aux) ) 
+[6] <exp1.png, id=33, 1412.27625pt x 833.1125pt>
+File: exp1.png Graphic file (type png)
+ <use exp1.png>
+Package pdftex.def Info: exp1.png used on input line 184.
+(pdftex.def)             Requested size: 423.68614pt x 249.93568pt.
+
+<exp2.png, id=34, 1412.27625pt x 833.1125pt>
+File: exp2.png Graphic file (type png)
+ <use exp2.png>
+Package pdftex.def Info: exp2.png used on input line 186.
+(pdftex.def)             Requested size: 423.68614pt x 249.93568pt.
+
+Overfull \hbox (5.43059pt too wide) in paragraph at lines 183--187
+[]
+ []
+
+
+Overfull \hbox (5.43059pt too wide) in paragraph at lines 183--187
+[] 
+ []
+
+[7 <./Model.png (PNG copy)>] [8 <./exp1.png>]
+<data1.png, id=43, 264.99pt x 101.62968pt>
+File: data1.png Graphic file (type png)
+ <use data1.png>
+Package pdftex.def Info: data1.png used on input line 188.
+(pdftex.def)             Requested size: 264.98935pt x 101.62943pt.
+
+<exp3.png, id=44, 1412.27625pt x 833.1125pt>
+File: exp3.png Graphic file (type png)
+ <use exp3.png>
+Package pdftex.def Info: exp3.png used on input line 195.
+(pdftex.def)             Requested size: 423.68614pt x 249.93568pt.
+
+Overfull \hbox (5.43059pt too wide) in paragraph at lines 195--196
+[][] 
+ []
+
+[9 <./exp2.png> <./data1.png>] <data2.png, id=49, 245.41687pt x 88.07906pt>
+File: data2.png Graphic file (type png)
+
+<use data2.png>
+Package pdftex.def Info: data2.png used on input line 197.
+(pdftex.def)             Requested size: 245.41626pt x 88.07883pt.
+ [10 <./exp3.png> <./data2.png>] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 16548 strings out of 493334
- 324160 string characters out of 3139246
+ 16573 strings out of 493334
+ 324465 string characters out of 3139246
  531632 words of memory out of 3000000
- 19706 multiletter control sequences out of 15000+200000
+ 19726 multiletter control sequences out of 15000+200000
  91979 words of font info for 110 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,11n,60p,8819b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -987,9 +1031,9 @@ Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo
 /AppData/Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Progr
 am Files/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTe
 X 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on Report.pdf (7 pages, 220094 bytes).
+Output written on Report.pdf (10 pages, 329661 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
+ 124 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -145,6 +145,12 @@ The manager has two behaviours. The first one, and also the first behaviour to b
 %reference this --> http://www.ctl.ua.edu/math103/scheduling/scheduling_algorithms.html
 
 The second behaviour, is the available tasks behaviour which is executed every time a task is completed. This behaviour consists in measuring the success (or failure/delay) of the completed task and gathering information about the workers that were working on it via the FIRE components. After this is done, the manager proceeds to analyse the newly freed workers and assign them to the remaining available tasks which maybe entirely new tasks that were unlocked or tasks that are still being worked on by the rest of the workers. It is important to point that while each worker has real rating value for each of his skills, the manager does not know this value. Instead, the manager uses an approximated value that is continuously updated (and approximated to the real value) each time a task is completed. This of course means that the manager might make some poor allocation choices in the beginning of the project due to him not knowing his workers very well, however, as more and more tasks are completed the manager will start having a better approximation of the real skills his workers gave. The manager will continue executing this behaviour, until the final state of the project is reached (when all the tasks are completed).
+
+\subsection{Fire}
+
+\subsection{IT}
+\subsection{WR}
+
 \section{Development}
 
 \subsection{Platform}
@@ -158,7 +164,39 @@ The following graphic is a representation of our class diagram.
 \end{center}
 
 \section{Experiences}
+In order to test our model, we defined a project with several tasks with different requirements and dependencies and provided two workers, with a different set of skills and ratings to attend to those tasks. The skill requirements of the Tasks are as follows:
+\begin{center}
+	$Task A  ->  {C++}$
+	\\
+	$Task B  ->  {Java}$
+	\\
+	$Task C  ->  {Java,C++}$
+	\\
+	$Task D  ->  {Management}$
+\end{center}
+The workers have the following skill sets and ratings, where -1 is absolutely negative, 0 is neutral and 1 is absolutely positive.
+\begin{center}
+	$Worker 1  ->  {<C++,1>,<Java,0.5>}$
+	\\
+	$Worker 2  ->  {<Java,0.5>,<Management,1>}$
+\end{center}
+We this information set, we can initialize our project and view it on the Repast environment.
+\includegraphics[scale=0.3]{exp1.png}
+At the moment we display this image we are at tick count 3 and some things have already happened. For example, the manager has executed his first behaviour, which is to calculate the Critical Path method and order the tasks by critical time. It has also executed its second behaviour, which is to find out if there are any available tasks and assign workers. At the start of the project there is only one available task and the manager assigns both workers to it, since he knows nothing about their skills and he might as well have them working than in an idle state. We will know display the project as soon as Task A finishes.
+\includegraphics[scale=0.3]{exp2.png}
+\begin{center}
+	\includegraphics[scale=1]{data1.png}
+\end{center}
+The first thing we notice is that the first batch of data gathered by the manager about the workers is displayed in the console. Remember that the manager starts by assuming the workers are neutral on all their skills, however, if we take a look at the definition of the workers we can notice they actually have very positive ratings, thus, the task finished sooner than the manager expected and the supposed rating of the workers skills received positive reinforcement.
+With the new supposed values the workers skills, the manager will decide the best way to allocate them to the two newly unlocked tasks. Since the value of Worker 1 is sufficient to satisfy the estimated duration of task B and the same happens with Worker 2 and Task C, the manager is able to perform a parallel allocation.
 
+We can follow this process until the end of the project noticing that when a worker is free, he does not stay idle but helps other workers in the remaining tasks, as long as he is minimally useful. We will now fast forward to the end of the project and analyse the final data.
+
+\includegraphics[scale=0.3]{exp3.png}
+\begin{center}
+	\includegraphics[scale=1]{data2.png}
+\end{center}
+The project was complete in 20.1 weeks, however, every instance of the same project may have slightly different dates due to random events that may slow or speed up the progress of some tasks. In this instance, we can see that the manager has managed to guess the ratings of Worker 2 quite well while with Worker 2 he is a little more far from the real values. It is important to note the objective of the manager is not to completely know the ratings of the workers, this is merely a means to an end, which is to conclude the project in the shortest amount of time.
 \section{Conclusions}
 
 \section{Improvement}

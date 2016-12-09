@@ -43,15 +43,15 @@ public class RepastStart extends RepastSLauncher {
 		D.addRequiredSkillset("Management");
 		
 		Task C = new Task("C",4,D);
-		C.addRequiredSkillset("Java","C++");
+		C.addRequiredSkillset("Java");
 		
 		
 		Task B = new Task("B",3,D);
-		B.addRequiredSkillset("Java");
+		B.addRequiredSkillset("C++");
 		
 		
 		Task A = new Task("A",2,B,C);
-		A.addRequiredSkillset("C++");
+		A.addRequiredSkillset("Management");
 		
 		Task start = new Task("Start",0,A);
 		

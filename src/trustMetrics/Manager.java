@@ -196,6 +196,23 @@ public class Manager extends Agent{
 				}
 			}
 		}
+		public void allocateWorkersBlind()
+		{
+			for(Task t: criticalPath)
+			{
+				if(availableTasks.contains(t))
+				{
+					//Add workers to tasks they are good at.
+					for(Worker w: workerList)
+					{
+						if(!w.assigned)
+						{
+							t.addWorker(w);
+						}
+					}
+				}
+			}
+		}
 		public void printWorkerKnowledge()
 		{
 			for(Worker w: workerList)
