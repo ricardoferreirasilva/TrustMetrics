@@ -271,29 +271,32 @@ public class Task extends Agent {
 					if (completion >= 100) {
 						finished = true;
 						float rating;
+						rating = 0; // if(expectedweeks == weeksTook)
+						if (expectedweeks > weeksTook) {
+							// To simplify, we use <positive value in ]0,
+							// 1]> = (1/5) * weeks_Before_Expected
+							// if project ended 5 or more weeks before
+							// expected,
+							// maximum rating is given
+							if (expectedweeks - weeksTook >= 5)
+								rating = 1;
+							else
+								rating = (float) 0.2 * (expectedweeks - weeksTook);
+						} else if (expectedweeks < weeksTook) {
+							// Same as before,only for negative values
+							if (weeksTook - expectedweeks >= 5)
+								rating = -1;
+							else{
+								rating = (float) -0.2 * (weeksTook - expectedweeks);
+							}
+						}
+						System.out.println("_______");
+						System.out.println(Task.this.getNamePrivate() + " Finished!");
 						for (Worker w : assignedWorkers) {
 							
-							rating = 0; // if(expectedweeks == weeksTook)
-							if (expectedweeks > weeksTook) {
-								// To simplify, we use <positive value in ]0,
-								// 1]> = (1/5) * weeks_Before_Expected
-								// if project ended 5 or more weeks before
-								// expected,
-								// maximum rating is given
-								if (expectedweeks - weeksTook >= 5)
-									rating = 1;
-								else
-									rating = (float) 0.2 * (expectedweeks - weeksTook);
-							} else if (expectedweeks < weeksTook) {
-								// Same as before,only for negative values
-								if (weeksTook - expectedweeks >= 5)
-									rating = -1;
-								else{
-									rating = (float) -0.2 * (weeksTook - expectedweeks);
-								}
-							}
-							System.out.println("Calculated weeks: " + expectedweeks + " || weeks Took: " + weeksTook);
-							System.out.println("Task " + name + " Rating : " + rating + " Worker: " + w.getNamePrivate());
+							
+							System.out.println("Calculated Weeks: " + expectedweeks + " | Weeks Took: " + weeksTook);
+							System.out.println(w.getNamePrivate() + " - Rating : " + rating);
 							
 							w.iterateOverFIRE_IT(Task.this,  rating);
 							//TODO Iterate Over CR [2.4]
@@ -301,6 +304,7 @@ public class Task extends Agent {
 							w.iterateOverFIRE_WR(getRealWorkerValue(w), Task.this);
 							w.assigned = false;
 						}
+						System.out.println("_______");
 						System.out.println("\n\n");
 					}
 				}

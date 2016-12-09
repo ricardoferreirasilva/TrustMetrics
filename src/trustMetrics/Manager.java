@@ -133,6 +133,7 @@ public class Manager extends Agent{
 						t.setAvailable();
 						t.completion = 100;
 						System.out.println("Manager - Project Complete. "+ "("+(re.GetTickCount()/ 10)+" weeks).");
+						printWorkerKnowledge();
 						d = true;
 						RunEnvironment.getInstance().endRun();
 						
@@ -192,6 +193,16 @@ public class Manager extends Agent{
 					{
 						if(!w.assigned && t.getExpectedWorkerValue(w) > -1) t.addWorker(w);
 					}
+				}
+			}
+		}
+		public void printWorkerKnowledge()
+		{
+			for(Worker w: workerList)
+			{
+				System.out.println(w.getNamePrivate() + " Report");
+				for (String s : w.getSkillSet().keySet()) {
+					System.out.println("Skill: " + s + " Knowledge: "+w.getSkillValue_RWSV(s)+" Real: "+w.getSkillSet().get(s));
 				}
 			}
 		}

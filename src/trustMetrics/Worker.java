@@ -132,7 +132,7 @@ public class Worker extends Agent{
 															// [0..99] - 50  [-50% e 50%]
 		double heteroevaluation = real_worker_value + (chance_of_event*real_worker_value) / 100;
 		
-		System.out.println("Task " + t.getNamePrivate() + " || " + this.getNamePrivate() + " || HeteroEval: " + heteroevaluation);	
+		System.out.println("Task " + t.getNamePrivate() + " || " + this.getNamePrivate() + " || Team Evaluation: " + heteroevaluation);	
 		
 		for(String skillz: t.getRequiredSkills()){
 			for(RWSV rel : rwsvList){

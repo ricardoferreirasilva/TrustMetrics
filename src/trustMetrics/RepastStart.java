@@ -38,42 +38,48 @@ public class RepastStart extends RepastSLauncher {
 		}
 		// Project def.
 		Task end = new Task("End",0);
+
+		Task D = new Task("D",4,end);
+		D.addRequiredSkillset("Management");
 		
-		Task C = new Task("C",4,end);
-		//C.addRequiredSkillset("FurnitureTesting", "HurtingChildren");
-		C.addRequiredSkillset("FurnitureTesting");
+		Task C = new Task("C",4,D);
+		C.addRequiredSkillset("Java","C++");
 		
-		Task B = new Task("B",3,end);
-		//B.addRequiredSkillset("HurtingChildren");
-		B.addRequiredSkillset("FurnitureTesting");
+		
+		Task B = new Task("B",3,D);
+		B.addRequiredSkillset("Java");
+		
 		
 		Task A = new Task("A",2,B,C);
-		A.addRequiredSkillset("FurnitureTesting");
+		A.addRequiredSkillset("C++");
 		
 		Task start = new Task("Start",0,A);
+		
+		
 		
 		HashMap<String, Float> skillSet = new HashMap<String,Float>();
 		
 		skillSet.clear();
-		skillSet.put("HurtingChildren", (float)1);
-		skillSet.put("FurnitureTesting", (float)0.5);
+		skillSet.put("C++", (float)1);
+		skillSet.put("Java", (float)0.5);
 		Worker w1 = new Worker("Worker 1",skillSet);
 		
 		
 		skillSet = new HashMap<String,Float>();    // important, so the same reference isn't made twice
-		skillSet.put("HurtingChildren", (float)0.5);
-		skillSet.put("FurnitureTesting", (float)1);
+		skillSet.put("Java", (float)0.5);
+		skillSet.put("Management", (float)1);
 		Worker w2 = new Worker("Worker 2",skillSet);
 		
-		Manager m = new Manager("Manager",start,A,B,C,end);
+		Manager m = new Manager("Manager",start,A,B,C,D,end);
 		m.addWorkers(w1,w2);
 		// Project def
 		try {
 			agentContainer.acceptNewAgent("Task 1", end).start();
-			agentContainer.acceptNewAgent("Task 2", C).start();
-			agentContainer.acceptNewAgent("Task 3", B).start();
-			agentContainer.acceptNewAgent("Task 4", A).start();
-			agentContainer.acceptNewAgent("Task 5", start).start();
+			agentContainer.acceptNewAgent("Task 2", D).start();
+			agentContainer.acceptNewAgent("Task 3", C).start();
+			agentContainer.acceptNewAgent("Task 4", B).start();
+			agentContainer.acceptNewAgent("Task 5", A).start();
+			agentContainer.acceptNewAgent("Task 6", start).start();
 			agentContainer.acceptNewAgent("Manager", m).start();
 			agentContainer.acceptNewAgent("Worker 1", w1).start();
 			agentContainer.acceptNewAgent("Worker 2", w2).start();
