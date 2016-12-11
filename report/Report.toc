@@ -8,10 +8,10 @@
 \contentsline {subsubsection}{\numberline {2.2.3}Manager}{5}
 \contentsline {subsection}{\numberline {2.3}Fire}{6}
 \contentsline {subsubsection}{\numberline {2.3.1}Interaction Trust}{6}
-\contentsline {subsubsection}{\numberline {2.3.2}Witness Reliability}{6}
-\contentsline {section}{\numberline {3}Development}{6}
-\contentsline {subsection}{\numberline {3.1}Platform}{6}
-\contentsline {subsection}{\numberline {3.2}Implementation}{6}
-\contentsline {section}{\numberline {4}Experiences}{7}
-\contentsline {section}{\numberline {5}Conclusions}{10}
-\contentsline {section}{\numberline {6}Improvement}{10}
+\contentsline {subsubsection}{\numberline {2.3.2}Witness Reputation}{6}
+\contentsline {section}{\numberline {3}Development}{7}
+\contentsline {subsection}{\numberline {3.1}Platform}{7}
+\contentsline {subsection}{\numberline {3.2}Implementation}{7}
+\contentsline {section}{\numberline {4}Experiences}{8}
+\contentsline {section}{\numberline {5}Conclusions}{11}
+\contentsline {section}{\numberline {6}Improvement}{11}
