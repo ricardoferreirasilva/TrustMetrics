@@ -1,9 +1,9 @@
 <repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
-  <name>Skill Ratings old</name>
-  <dataSet>Skill Ratings</dataSet>
+  <name>Finished Tasks</name>
+  <dataSet>Finished Tasks</dataSet>
   <xAxisLabel>Ticks</xAxisLabel>
   <yAxisLabel></yAxisLabel>
-  <chartTitle>Skill Ratings</chartTitle>
+  <chartTitle>Finished Tasks</chartTitle>
   <type>TIME_SERIES</type>
   <background>
     <red>192</red>
@@ -21,14 +21,18 @@
   <showLegend>true</showLegend>
   <seriesIds>
     <entry>
-      <string>LastRWSV</string>
+      <string>FinishedTasks</string>
       <SeriesData>
-        <label></label>
+        <label>FinishedTasks</label>
+        <color>
+          <red>51</red>
+          <green>255</green>
+          <blue>51</blue>
+          <alpha>255</alpha>
+        </color>
       </SeriesData>
     </entry>
   </seriesIds>
-  <dataValueIds>
-    <string>LastRWSV</string>
-  </dataValueIds>
+  <dataValueIds/>
   <plotRangeLength>-1</plotRangeLength>
 </repast.simphony.chart2.engine.TimeSeriesChartDescriptor>
