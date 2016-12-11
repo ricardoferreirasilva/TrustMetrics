@@ -24,6 +24,14 @@
         <methodName>getLastRWSV</methodName>
       </repast.simphony.data2.engine.MethodDataSourceDefinition>
     </entry>
+    <entry>
+      <string>LocalName</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>LocalName</id>
+        <className>trustMetrics.Worker</className>
+        <methodName>getLocalName</methodName>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
   </methodDataSources>
   <countSources class="linked-hash-map"/>
   <customNADataSources class="linked-hash-map"/>
