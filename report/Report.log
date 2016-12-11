@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  10 DEC 2016 13:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  11 DEC 2016 10:41
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1014,26 +1014,36 @@ File: data2.png Graphic file (type png)
 <use data2.png>
 Package pdftex.def Info: data2.png used on input line 197.
 (pdftex.def)             Requested size: 245.41626pt x 88.07883pt.
- [10 <./exp3.png> <./data2.png>] (Report.aux) ) 
+ [10 <./exp3.png> <./data2.png>]
+
+Class scrartcl Warning: incompatible usage of \@ssect detected.
+(scrartcl)              You've used the KOMA-Script implementation of \@ssect
+(scrartcl)              from within a non compatible caller, that does not
+(scrartcl)              \scr@s@ct@@nn@m@ locally.
+(scrartcl)              This could result in several error messages on input li
+ne 205.
+
+[11] (Report.aux) ) 
 Here is how much of TeX's memory you used:
- 16573 strings out of 493334
- 324465 string characters out of 3139246
- 531632 words of memory out of 3000000
- 19726 multiletter control sequences out of 15000+200000
- 91979 words of font info for 110 fonts, out of 3000000 for 9000
+ 16580 strings out of 493334
+ 324541 string characters out of 3139246
+ 531640 words of memory out of 3000000
+ 19730 multiletter control sequences out of 15000+200000
+ 96410 words of font info for 113 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,11n,60p,8819b,293s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Program Files/MiKTeX 2.9/fon
-ts/enc/dvips/fontname/8r.enc} <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\
-pk\ljfour\jknappen\ec\dpi600\ecsx1095.pk> <C:\Users\Ricardo\AppData\Local\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1440.pk><C:/Users/Ricardo/AppData/
-Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo
-/AppData/Roaming/MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Progr
-am Files/MiKTeX 2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTe
-X 2.9/fonts/type1/adobe/utopia/putri8a.pfb>
-Output written on Report.pdf (10 pages, 329939 bytes).
+ <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\
+jknappen\ec\dpi600\ectt1095.pk>{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fon
+tname/8r.enc} <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
+en\ec\dpi600\ecsx1095.pk> <C:\Users\Ricardo\AppData\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\ectt1440.pk><C:/Users/Ricardo/AppData/Roaming/MiKTeX/2
+.9/fonts/type1/public/fourier/fourier-mex.pfb><C:/Users/Ricardo/AppData/Roaming
+/MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Program Files/MiKTeX 
+2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type
+1/adobe/utopia/putri8a.pfb>
+Output written on Report.pdf (11 pages, 340124 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
+ 155 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
