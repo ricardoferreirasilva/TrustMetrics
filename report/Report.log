@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  11 DEC 2016 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.11.3)  11 DEC 2016 15:06
 entering extended mode
 **./Report.tex
 (Report.tex
@@ -1014,16 +1014,16 @@ File: data2.png Graphic file (type png)
 <use data2.png>
 Package pdftex.def Info: data2.png used on input line 197.
 (pdftex.def)             Requested size: 245.41626pt x 88.07883pt.
- [10 <./exp3.png> <./data2.png>]
+ [10 <./exp3.png> <./data2.png>] [11]
 
 Class scrartcl Warning: incompatible usage of \@ssect detected.
 (scrartcl)              You've used the KOMA-Script implementation of \@ssect
 (scrartcl)              from within a non compatible caller, that does not
 (scrartcl)              \scr@s@ct@@nn@m@ locally.
 (scrartcl)              This could result in several error messages on input li
-ne 205.
+ne 211.
 
-[11] (Report.aux) ) 
+[12] (Report.aux) ) 
 Here is how much of TeX's memory you used:
  16580 strings out of 493334
  324541 string characters out of 3139246
@@ -1041,9 +1041,9 @@ jfour\jknappen\ec\dpi600\ectt1440.pk><C:/Users/Ricardo/AppData/Roaming/MiKTeX/2
 /MiKTeX/2.9/fonts/type1/public/fourier/fourier-ms.pfb><D:/Program Files/MiKTeX 
 2.9/fonts/type1/adobe/utopia/putr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type
 1/adobe/utopia/putri8a.pfb>
-Output written on Report.pdf (11 pages, 340124 bytes).
+Output written on Report.pdf (12 pages, 341635 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
+ 158 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
