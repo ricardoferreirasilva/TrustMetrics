@@ -37,12 +37,17 @@ public class Worker extends Agent{
 	private ArrayList<RWSV> rwsvList = new ArrayList<RWSV>();
 	private ArrayList<SimpleEntry<Task,Float>> pastProjectsRatings = new ArrayList<SimpleEntry<Task, Float>>();
 	
+	
+	//Hetero Evaluation.
+	boolean heteroDone = true;
+	Task currentTask;
 	//Constructor
 	public Worker(String name,HashMap<String,Float> sset)
 	{
 		this.name = name;
 		skillSet = sset;
 		this.assigned = false;
+		currentTask = null;
 		Iterator it = sset.entrySet().iterator();	
 		while(it.hasNext()){
 			Map.Entry<String, Float> pair = (Map.Entry<String,Float>)it.next();
@@ -79,7 +84,53 @@ public class Worker extends Agent{
 		
 		
 	}
+	// SEND BEHAVIOUR HERE
+	// FOR EACH WORKER IN CURRENT TASK, EVALS WITH RANDOM AND SENDS IT ALL TO MANAGER.
+	class sendHeteroBehaviour extends SimpleBehaviour {
+		private static final long serialVersionUID = 1837679922616403427L;
+		private int n = 0;
 
+		public sendHeteroBehaviour(Agent a) {
+			super(a);
+		}
+
+		// método action
+		public void action() {
+			if(heteroDone == false)
+			{
+				
+			
+				ACLMessage msg = blockingReceive();
+				String HeteroEvaluation = "";
+				if (msg.getPerformative() == ACLMessage.INFORM) {
+					
+					ACLMessage reply = msg.createReply();
+					String eval = "";
+					for(Worker w: currentTask.assignedWorkers)
+					{
+						if(w != (Worker) myAgent)
+						{
+							Random randomGenerator = new Random();
+							int chance_of_event = randomGenerator.nextInt(100) - 50; // chance_of_event
+																				// [0..99] - 50  [-50% e 50%]
+							double workerValueReal = currentTask.getRealWorkerValue(w);
+							double evaluation = workerValueReal * (chance_of_event / 100);
+							eval += w.getNamePrivate()+":"+evaluation+"|";
+						}
+					}
+					reply.setContent(eval);
+					//Sending to all, but only manager will read.
+					send(reply);
+					heteroDone = true;
+				}
+			}
+		}
+
+		// método done
+		public boolean done() {
+			return heteroDone;
+		}
+	}
 	public void iterateOverFIRE_IT(Task t, float rating){
 		
 		pastProjectsRatings.add(new SimpleEntry<Task, Float>(t, rating));
@@ -124,7 +175,10 @@ public class Worker extends Agent{
 			
 		}
 	}
-	
+	public void setTask(Task t)
+	{
+		currentTask = t;
+	}
 	public void iterateOverFIRE_WR(double real_worker_value, Task t){
 		
 		Random randomGenerator = new Random();

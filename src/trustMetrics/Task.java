@@ -135,6 +135,7 @@ public class Task extends Agent {
 
 	public void addWorker(Worker w) {
 		assignedWorkers.add(w);
+		w.currentTask = this;
 		w.assigned = true;
 		context = ContextUtils.getContext(this);
 		net = (Network<Object>) context.getProjection("Network");
@@ -269,8 +270,11 @@ public class Task extends Agent {
 					// completion += 25; //for debbugging and checking if
 					// progress is working
 					if (completion >= 100) {
-						finished = true;
 						float rating;
+						for(Worker w: assignedWorkers)
+						{
+							w.heteroDone = true;
+						}
 						rating = 0; // if(expectedweeks == weeksTook)
 						if (expectedweeks > weeksTook) {
 							// To simplify, we use <positive value in ]0,
@@ -306,6 +310,7 @@ public class Task extends Agent {
 						}
 						System.out.println("_______");
 						System.out.println("\n\n");
+						finished = true;
 					}
 				}
 			}
