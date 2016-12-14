@@ -86,6 +86,18 @@ public class Manager extends Agent{
 			workerList.add(w);
 		}
 	}
+	
+	ArrayList<Worker> getUnassignedList()
+	{
+		ArrayList<Worker> unassignedWorkerList = new ArrayList<>();
+		for(Worker w : this.workerList)
+		{
+			if(!w.assigned)
+				unassignedWorkerList.add(w);
+		}
+		return unassignedWorkerList;
+	
+	}
 	private class criticalPathBehaviour extends SimpleBehaviour
 	{
 		boolean d = false;
@@ -131,7 +143,9 @@ public class Manager extends Agent{
 					if(t.getNamePrivate().equals("End"))
 					{
 						t.setAvailable();
+						t.completion = 100;
 						System.out.println("Manager - Project Complete. "+ "("+(re.GetTickCount()/ 10)+" weeks).");
+						printWorkerKnowledge();
 						d = true;
 						RunEnvironment.getInstance().endRun();
 						
@@ -143,11 +157,73 @@ public class Manager extends Agent{
 					}
 				}
 			}
-			/* WORKER ALLOCATION
-			 * 
-			 * 
-			 * 
-			 */
+			allocateWorkersSmart();		
+		}
+		@Override
+		public boolean done() {
+			// TODO Auto-generated method stub
+			return d;
+		}
+		public void allocateWorkersSmart()
+		{
+
+			ArrayList<Worker> unassignedWorkerList = getUnassignedList();
+			for(Task t: criticalPath)
+			{
+				if(availableTasks.contains(t))
+				{
+					Collections.sort(unassignedWorkerList, new Comparator<Worker>()
+					{
+						@Override
+						public int compare(Worker w1, Worker w2)
+						{
+							return t.getExpectedWorkerValue(w1)>t.getExpectedWorkerValue(w2)?1:-1;
+						}
+					});
+					while(unassignedWorkerList.size()>0 && !t.isHealthy())
+					{
+						//Add workers to tasks they are good at.
+						Worker w = unassignedWorkerList.get(0);
+						//critical task accepts range [-1,1], otherwise only [0,1]
+						if(criticalPath.indexOf(t) == 0)
+						{
+							t.addWorker(w);
+							unassignedWorkerList.remove(w);
+						}
+						else if(t.getExpectedWorkerValue(w)>=0)
+						{
+							t.addWorker(w);
+							unassignedWorkerList.remove(w);
+						}
+						else break;
+					}
+				}
+			}
+			//Add the remainder of the workers to the most important task. (First in the list.)
+			for(Task t: criticalPath)
+			{
+				if(availableTasks.contains(t))
+				{
+					Collections.sort(unassignedWorkerList, new Comparator<Worker>()
+					{
+						@Override
+						public int compare(Worker w1, Worker w2)
+						{
+							return t.getExpectedWorkerValue(w1)>t.getExpectedWorkerValue(w2)?1:-1;
+						}
+					});
+					while(unassignedWorkerList.size()>0)
+					{
+						//Add workers to tasks they are good at.
+						Worker w = unassignedWorkerList.get(0);
+						t.addWorker(w);
+						unassignedWorkerList.remove(w);
+					}
+				}
+			}
+		}
+		public void allocateWorkersBlind()
+		{
 			for(Task t: criticalPath)
 			{
 				if(availableTasks.contains(t))
@@ -157,32 +233,21 @@ public class Manager extends Agent{
 					{
 						if(!w.assigned)
 						{
-							//System.out.println(w.getNamePrivate() + " Value:" + t.getExpectedWorkerValue(w));
-							if(t.getExpectedWorkerValue(w) >= 0 && !t.isHealthy())
-							{
-								t.addWorker(w);
-							}
-						}
-					}
-					/*One the first iteration, if the critical task is not healthy, add workers
-					despite their value until it is.
-					*/
-					if(criticalPath.indexOf(t) == 0 && !t.isHealthy())
-					{
-						for(Worker w: workerList)
-						{
-							//More effective if workers in workerlist are ordered by value to ask t.
-							if(!w.assigned) t.addWorker(w);
-							if(t.isHealthy()) break;
+							t.addWorker(w);
 						}
 					}
 				}
 			}
 		}
-		@Override
-		public boolean done() {
-			// TODO Auto-generated method stub
-			return d;
+		public void printWorkerKnowledge()
+		{
+			for(Worker w: workerList)
+			{
+				System.out.println(w.getNamePrivate() + " Report");
+				for (String s : w.getSkillSet().keySet()) {
+					System.out.println("Skill: " + s + " Knowledge: "+w.getSkillValue_RWSV(s)+" Real: "+w.getSkillSet().get(s));
+				}
+			}
 		}
 		
 	}
