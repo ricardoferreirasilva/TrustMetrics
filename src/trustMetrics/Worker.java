@@ -161,7 +161,6 @@ public class Worker extends Agent {
 
 				receivedheteroeval = Double.parseDouble(aux);
 				double heteroevaluation = 0;
-				// TODO HERE
 				if (currentTask.assignedWorkers.size() > 1)
 					if (receivedheteroeval != -1) {
 						heteroevaluation = receivedheteroeval;
