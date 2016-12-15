@@ -273,7 +273,7 @@ public class Task extends Agent {
 						float rating;
 						for(Worker w: assignedWorkers)
 						{
-							w.heteroDone = true;
+							w.heteroDone = false;
 						}
 						rating = 0; // if(expectedweeks == weeksTook)
 						if (expectedweeks > weeksTook) {
@@ -303,7 +303,7 @@ public class Task extends Agent {
 							System.out.println(w.getNamePrivate() + " - Rating : " + rating);
 							
 							w.iterateOverFIRE_IT(Task.this,  rating);
-							//TODO Iterate Over CR [2.4]
+							//TODO HERE
 							
 							w.iterateOverFIRE_WR(getRealWorkerValue(w), Task.this);
 							w.assigned = false;

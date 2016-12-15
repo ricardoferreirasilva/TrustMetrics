@@ -17,6 +17,7 @@ import repast.simphony.visualizationOGL2D.DefaultStyleOGL2D;
 import sajas.core.Agent;
 import jade.core.AID;
 import sajas.core.behaviours.Behaviour;
+import sajas.core.behaviours.CyclicBehaviour;
 import sajas.core.behaviours.SimpleBehaviour;
 import sajas.core.behaviours.WakerBehaviour;
 import sajas.core.behaviours.WrapperBehaviour;
@@ -75,8 +76,12 @@ public class Manager extends Agent{
 	      }
 		 criticalPathBehaviour criticalPathBehaviour = new criticalPathBehaviour();
 		 availableTasksBehaviour availableTasksBehaviour = new availableTasksBehaviour();
+		 receiveMessageBehaviour receiveMessageBehaviour = new receiveMessageBehaviour();
 		 addBehaviour(criticalPathBehaviour);
 		 addBehaviour(availableTasksBehaviour);
+		 addBehaviour(receiveMessageBehaviour);
+		 
+		 
 		
 	}
 	public void addWorkers(Worker... workers)
@@ -97,6 +102,19 @@ public class Manager extends Agent{
 		}
 		return unassignedWorkerList;
 	
+	}
+	
+	private class receiveMessageBehaviour extends CyclicBehaviour{
+
+		@Override
+		public void action() {
+			ACLMessage msg = receive();
+			if(msg!=null){
+				System.out.println("Vindo do manager: " + msg.getContent());
+			}
+			else block();
+		}
+		
 	}
 	private class criticalPathBehaviour extends SimpleBehaviour
 	{
